@@ -12,4 +12,4 @@ class Test(models.Model):
         unique=True,
         verbose_name='Название теста'
     )
-    questions = 
+    # questions = 
