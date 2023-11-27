@@ -54,25 +54,25 @@ class StudentTest(models.Model):
                 f'на {self.percentage}% с результатом {self.result}')
 
 
-class StudentCourse(models.Model):
-    """Связь студентов с курсами"""
-    student = models.ForeignKey(
-        Student,
-        verbose_name='Студент',
-        on_delete=models.CASCADE
-    )
-    course = models.ForeignKey(
-        Course,
-        verbose_name='Курс',
-        on_delete=models.CASCADE
-    )
-    purchased = models.BooleanField(
-        verbose_name='Статус покупки',
-        default=False
-    )
+# class StudentCourse(models.Model):
+#     """Связь студентов с курсами"""
+#     student = models.ForeignKey(
+#         Student,
+#         verbose_name='Студент',
+#         on_delete=models.CASCADE
+#     )
+#     # course = models.ForeignKey(
+#     #     Course,
+#     #     verbose_name='Курс',
+#     #     on_delete=models.CASCADE
+#     # )
+#     purchased = models.BooleanField(
+#         verbose_name='Статус покупки',
+#         default=False
+#     )
 
-    class Meta:
-        ordering = ('student',)
+#     class Meta:
+#         ordering = ('student',)
 
-    def __str__(self):
-        return f'студент {self.student} проходит курс {self.course}'
+#     def __str__(self):
+#         return f'студент {self.student} проходит курс {self.course}'
