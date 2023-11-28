@@ -17,11 +17,11 @@ class Specialization(models.Model):
         unique=True
     )
     # на диаграмме не так, но мне кажется, что это будет удобнее
-    grade = models.ManyToManyField(
-        'Grade',
-        related_name='grades',
-        verbose_name='Грейд'
-    )
+    # grade = models.ManyToManyField(
+    #     'Grade',
+    #     related_name='grades',
+    #     verbose_name='Грейд'
+    # )
     # на диаграмме так, думаю, похоже на правду
     direction = models.ManyToManyField(
         'Direction',
@@ -106,12 +106,19 @@ class Grade(models.Model):
         unique=True
     )
     # Возможно, сделать один ко многим от group_skill к Grade
-    group_skill = models.ManyToManyField(
-        'SkillGroup',
-        related_name='groups',
-        verbose_name='Группа навыков'
-    )
+    # group_skill = models.ManyToManyField(
+    #     'SkillGroup',
+    #     related_name='groups',
+    #     verbose_name='Группа навыков'
+    # )
     image = models.ImageField(upload_to='grades/')
+    specialization = models.ForeignKey(
+        Specialization,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='grade_specialization',
+        verbose_name='Специальность'
+    )
 
     class Meta:
         ordering = ('name',)
@@ -129,6 +136,10 @@ class Skill(models.Model):
         max_length=MAX_LENGHT,
         verbose_name='Название навыка',
     )
+    status = models.BooleanField(
+        default=False,
+        verbose_name='Статус навыка'
+    )
     description = models.TextField(verbose_name='Описание')
     direction = models.ForeignKey(
         'Direction',
@@ -141,7 +152,8 @@ class Skill(models.Model):
         'SkillGroup',
         on_delete=models.SET_NULL,
         null=True,
-        related_name='skills_group'
+        related_name='skills_group',
+        verbose_name='Группа'
     )
 
     class Meta:
@@ -167,6 +179,13 @@ class SkillGroup(models.Model):
         verbose_name='Название',
     )
     description = models.TextField(verbose_name='Описание')
+    grade = models.ForeignKey(
+        Grade,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='skills_group_grade',
+        verbose_name='Грейд'
+    )
     # skill = models.ForeignKey(
     #     Skill,
     #     on_delete=models.CASCADE,
