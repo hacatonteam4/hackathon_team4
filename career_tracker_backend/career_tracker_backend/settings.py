@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'prof_tests.apps.ProfTestsConfig',
     'students.apps.StudentsConfig',
     'specialties.apps.SpecialtiesConfig',
+    'api.apps.ApiConfig'
 ]
 
 MIDDLEWARE = [
