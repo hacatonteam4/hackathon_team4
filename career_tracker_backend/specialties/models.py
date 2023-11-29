@@ -207,6 +207,7 @@ class Direction(models.Model):
         max_length=MAX_LENGHT,
         verbose_name='Название'
     )
+    percent() # добавить связную таблицу с ним
     # skill = models.ForeignKey(
     #     Skill,
     #     on_delete=models.CASCADE,
