@@ -64,7 +64,7 @@ class Grade(models.Model):
         verbose_name='Название грейда',
         unique=True
     )
-    image = models.ImageField(upload_to='grades/')
+    image = models.ImageField(upload_to='grades/', null=True)
     specialization = models.ForeignKey(
         Specialization,
         on_delete=models.SET_NULL,

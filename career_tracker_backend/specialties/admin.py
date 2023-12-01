@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (
-    Specialization, Course, Grade, SkillGroup, Skill, DirectionSpeciality
+    Specialization, Course, Grade, Skill, Direction
 )
 
 
@@ -20,13 +20,8 @@ class GradeAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
-@admin.register(DirectionSpeciality)
+@admin.register(Direction)
 class DirectionSpecialityAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-
-
-@admin.register(SkillGroup)
-class SkillGroupAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
