@@ -15,7 +15,8 @@ Student = get_user_model()
 
 
 class StudentTest(models.Model):
-    """Связь студентов с тестами"""
+    '''Связь студентов с тестами'''
+
     student = models.ForeignKey(
         Student,
         verbose_name='Студент',
@@ -86,6 +87,8 @@ class StudentCourse(models.Model):
 
 
 class SkillStudent(models.Model):
+    '''Модель связи навыка и студента'''
+
     student = models.ForeignKey(
         Student,
         on_delete=models.CASCADE,
@@ -113,6 +116,8 @@ class SkillStudent(models.Model):
 
 
 class SprintStudent(models.Model):
+    '''Модель связи спринта и студента'''
+
     sprint = models.ForeignKey(
         Sprint,
         on_delete=models.CASCADE,

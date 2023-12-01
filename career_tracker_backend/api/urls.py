@@ -5,5 +5,5 @@ from career_tracker_backend.urls import VERSION_API
 
 
 urlpatterns = [
-    path(f'v{VERSION_API}/', include(f'api.{VERSION_API}.urls')),
+    path(f'v{VERSION_API}/', include(f'api.v{VERSION_API}.urls')),
 ]
