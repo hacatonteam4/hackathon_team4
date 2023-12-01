@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from prof_tests.models import Test
-# from course.models import Course
+from specialties.models import Course, Sprint, Skill
 
 
 PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]
@@ -33,10 +33,6 @@ class StudentTest(models.Model):
         validators=PERCENTAGE_VALIDATOR,
         verbose_name='Пройденный процент теста'
     )
-    result = models.BooleanField(
-        default=False,
-        verbose_name='Статус теста'
-    )
 
     class Meta:
         ordering = ('student',)
@@ -54,25 +50,86 @@ class StudentTest(models.Model):
                 f'на {self.percentage}% с результатом {self.result}')
 
 
-# class StudentCourse(models.Model):
-#     """Связь студентов с курсами"""
-#     student = models.ForeignKey(
-#         Student,
-#         verbose_name='Студент',
-#         on_delete=models.CASCADE
-#     )
-#     # course = models.ForeignKey(
-#     #     Course,
-#     #     verbose_name='Курс',
-#     #     on_delete=models.CASCADE
-#     # )
-#     purchased = models.BooleanField(
-#         verbose_name='Статус покупки',
-#         default=False
-#     )
+class StudentCourse(models.Model):
+    """Связь студентов с курсами"""
 
-#     class Meta:
-#         ordering = ('student',)
+    student = models.ForeignKey(
+        Student,
+        related_name='student_courses',
+        verbose_name='Студент',
+        on_delete=models.CASCADE
+    )
+    course = models.ForeignKey(
+        Course,
+        related_name='course_students',
+        verbose_name='Курс',
+        on_delete=models.CASCADE
+    )
+    status_payment = models.BooleanField(
+        verbose_name='Статус покупки',
+        default=False
+    )
 
-#     def __str__(self):
-#         return f'студент {self.student} проходит курс {self.course}'
+    class Meta:
+        ordering = ('student',)
+        verbose_name = 'Связь студента и курса'
+        verbose_name_plural = 'Связь студентов и курсов'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('student', 'course',),
+                name='unique_student_course'
+            )
+        ]
+
+    def __str__(self):
+        return f'студент {self.student} проходит курс {self.course}'
+
+
+class SkillStudent(models.Model):
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name='skills_student',
+        verbose_name='Студент'
+    )
+    skill = models.ForeignKey(
+        Skill,
+        on_delete=models.CASCADE,
+        related_name='students_skill',
+        verbose_name='Навык'
+    )
+    status = models.BooleanField(
+        default=False,
+        verbose_name='Статус получения навыка'
+    )
+
+    class Meta:
+        ordering = ('student',)
+        verbose_name = 'Связь студента и навыка'
+        verbose_name_plural = 'Связь студентов и навыков'
+
+    def __str__(self):
+        return f'Студент {self.student} изучает навык {self.skill}'
+
+
+class SprintStudent(models.Model):
+    sprint = models.ForeignKey(
+        Sprint,
+        on_delete=models.CASCADE,
+        related_name='students_sprint',
+        verbose_name='Спринт'
+    )
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name='sprints_student',
+        verbose_name='Студент'
+    )
+
+    class Meta:
+        ordering = ('student',)
+        verbose_name = 'Связь студента и спринта'
+        verbose_name_plural = 'Связь студентов и спринтов'
+
+    def __str__(self):
+        return f'Студент {self.student} проходит спринт {self.sprint}'
