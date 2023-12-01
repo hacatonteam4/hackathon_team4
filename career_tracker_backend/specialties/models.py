@@ -41,8 +41,8 @@ class Course(models.Model):
     description = models.TextField(verbose_name='Описание')
     specialization = models.ForeignKey(
         Specialization,
-        on_delete=True,
-        unique=True,
+        on_delete=models.SET_NULL,
+        null=True,
         related_name='courses_specialization',
         verbose_name='Специальность'
     )
@@ -128,6 +128,8 @@ class Skill(models.Model):
 
 
 class Direction(models.Model):
+    '''Модель направления навыков специальности'''
+
     name = models.CharField(
         max_length=MAX_LENGHT,
         verbose_name='Название'
@@ -144,6 +146,8 @@ class Direction(models.Model):
 
 
 class Sprint(models.Model):
+    '''Модель спринта'''
+
     name = models.CharField(
         max_length=MAX_LENGHT,
         verbose_name='Название спринта'
