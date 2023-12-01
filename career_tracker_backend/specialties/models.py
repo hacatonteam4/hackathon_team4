@@ -1,14 +1,9 @@
-from decimal import Decimal
-
 from django.db import models
 from django.contrib.auth import get_user_model
-
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 Student = get_user_model()
 
-PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]
 MAX_LENGHT = 200
 
 
@@ -24,13 +19,6 @@ class Specialization(models.Model):
         'Direction',
         related_name='directions',
         verbose_name='Направление обучения'
-    )
-    progress = models.DecimalField(
-        max_digits=3,
-        decimal_places=0,
-        default=Decimal(0),
-        validators=PERCENTAGE_VALIDATOR,
-        verbose_name='Пройденный процент теста'
     )
 
     class Meta:
@@ -101,10 +89,6 @@ class Skill(models.Model):
         max_length=MAX_LENGHT,
         verbose_name='Название навыка',
     )
-    status = models.BooleanField(
-        default=False,
-        verbose_name='Статус навыка'
-    )
     description = models.TextField(verbose_name='Описание')
     direction = models.ForeignKey(
         'Direction',
@@ -119,6 +103,13 @@ class Skill(models.Model):
         null=True,
         related_name='skills_grade',
         verbose_name='Группа'
+    )
+    sprint = models.ForeignKey(
+        'Sprint',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='skills_sprint',
+        verbose_name='Спринт'
     )
 
     class Meta:
@@ -157,20 +148,11 @@ class Sprint(models.Model):
         max_length=MAX_LENGHT,
         verbose_name='Название спринта'
     )
-    status = models.BooleanField(
-        default=False,
-        verbose_name='Статус спринта'
-    )
     course = models.ForeignKey(
         Course,
         on_delete=models.CASCADE,
         related_name='sprints_course',
         verbose_name='Курс'
-    )
-    skill = models.ManyToManyField(
-        Skill,
-        related_name='sprints_skill',
-        verbose_name='Навык'
     )
 
     class Meta:

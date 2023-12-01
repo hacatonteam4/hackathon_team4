@@ -33,10 +33,6 @@ class StudentTest(models.Model):
         validators=PERCENTAGE_VALIDATOR,
         verbose_name='Пройденный процент теста'
     )
-    result = models.BooleanField(
-        default=False,
-        verbose_name='Статус теста'
-    )
 
     class Meta:
         ordering = ('student',)
@@ -71,10 +67,6 @@ class StudentCourse(models.Model):
     )
     status_payment = models.BooleanField(
         verbose_name='Статус покупки',
-        default=False
-    )
-    status_course = models.BooleanField(
-        verbose_name='Статус изучения',
         default=False
     )
 
@@ -132,10 +124,6 @@ class SprintStudent(models.Model):
         on_delete=models.CASCADE,
         related_name='sprints_student',
         verbose_name='Студент'
-    )
-    status = models.BooleanField(
-        default=True,
-        verbose_name='Статус прохождения спринта'
     )
 
     class Meta:

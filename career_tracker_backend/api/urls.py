@@ -1,7 +1,9 @@
 """URL-роутинг приложения API."""
 from django.urls import path, include
 
+from career_tracker_backend.urls import VERSION_API
+
 
 urlpatterns = [
-    path('v1/', include('api.v1.urls')),
+    path(f'v{VERSION_API}/', include(f'api.{VERSION_API}.urls')),
 ]
