@@ -1,8 +1,5 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 
-
-Student = get_user_model()
 
 MAX_LENGHT = 200
 
