@@ -17,7 +17,7 @@ class Specialization(models.Model):
     )
     direction = models.ManyToManyField(
         'Direction',
-        related_name='directions',
+        related_name='specialties',
         verbose_name='Направление обучения'
     )
 
@@ -64,7 +64,7 @@ class Grade(models.Model):
         verbose_name='Название грейда',
         unique=True
     )
-    image = models.ImageField(upload_to='grades/')
+    image = models.ImageField(upload_to='grades/', null=True, blank=True)
     specialization = models.ForeignKey(
         Specialization,
         on_delete=models.SET_NULL,
@@ -102,7 +102,7 @@ class Skill(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         related_name='skills_grade',
-        verbose_name='Группа'
+        verbose_name='Грейд'
     )
     sprint = models.ForeignKey(
         'Sprint',
@@ -118,8 +118,8 @@ class Skill(models.Model):
         verbose_name_plural = 'Навыки'
         constraints = [
             models.UniqueConstraint(
-                fields=('name', 'group',),
-                name='unique_group_skill'
+                fields=('name', 'direction',),
+                name='unique_direction_skill'
             )
         ]
 
