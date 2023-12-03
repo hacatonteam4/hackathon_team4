@@ -17,6 +17,7 @@ class Specialization(models.Model):
         related_name='specialties',
         verbose_name='Направление обучения'
     )
+    image = models.ImageField(upload_to='specialties/', null=True, blank=True)
 
     class Meta:
         ordering = ('name',)
@@ -61,7 +62,6 @@ class Grade(models.Model):
         verbose_name='Название грейда',
         unique=True
     )
-    image = models.ImageField(upload_to='grades/', null=True, blank=True)
     specialization = models.ForeignKey(
         Specialization,
         on_delete=models.SET_NULL,
