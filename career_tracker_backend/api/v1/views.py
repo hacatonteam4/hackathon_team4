@@ -67,10 +67,6 @@ class GetPlanStudent(generics.ListAPIView):
     serializer_class = GetCoursesSprecialization
 
     def get_queryset(self):
-        a = Course.objects.filter(
-            specialization__courses_specialization__course_students__student=self.request.user
-        )
-        print(a)
         return Course.objects.filter(
             specialization__courses_specialization__course_students__student=self.request.user
         )
