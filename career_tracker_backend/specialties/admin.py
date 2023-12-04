@@ -19,7 +19,7 @@ class SpecializationAdmin(admin.ModelAdmin):
     list_filter = ('name', 'direction')
     search_fields = ('name', 'direction')
     empty_value_display = '-пусто-'
-    inlines = (DirectionInline,)
+    # inlines = (DirectionInline,)
 
     @admin.display(description='Направления')
     def display_directions(self, obj):
@@ -37,10 +37,10 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(Grade)
 class GradeAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'specialization', 'image')
-    list_editable = ('name', 'specialization', 'image')
-    list_filter = ('name', 'specialization', 'image')
-    search_fields = ('name', 'specialization', 'image')
+    list_display = ('pk', 'name', 'specialization')
+    list_editable = ('name', 'specialization')
+    list_filter = ('name', 'specialization')
+    search_fields = ('name', 'specialization')
 
 
 @admin.register(Direction)
