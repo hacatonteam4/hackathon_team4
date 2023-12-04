@@ -1,7 +1,8 @@
 from rest_framework import serializers
+
 from drf_base64.fields import Base64ImageField
 
-from specialties.models import Direction, Grade, GradeDirection, Skill
+from specialties.models import Direction, Grade, GradeDirection, Skill, Course
 from students.models import Student, StudentSpecialization
 
 
@@ -75,3 +76,10 @@ class StatisticDirectionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Direction
         fields = ('id', 'name', 'color')
+
+
+class GetCoursesSprecialization(serializers.ModelSerializer):
+
+    class Meta:
+        model = Course
+        fields = ('id', 'name')

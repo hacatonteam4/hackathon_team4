@@ -4,9 +4,9 @@ from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
 
 
-from specialties.models import Specialization, Grade, Direction, Skill
+from specialties.models import Specialization, Grade, Direction, Skill, Course
 from api.v1.serializers import (SkillsSerializer, StatisticSerializer,
-                                StatisticDirectionsSerializer)
+                                StatisticDirectionsSerializer, GetCoursesSprecialization)
 
 
 class StatisticsView(APIView):
@@ -59,3 +59,18 @@ class UnexploredSkillsView(generics.ListAPIView):
             sprint_skills__students_sprint__student=self.request.user
         ).filter(grades_directions__grade=grade)
         return skills
+
+
+class GetPlanStudent(generics.ListAPIView):
+    '''Обработка запроса на получение курсов по специальности студента'''
+
+    serializer_class = GetCoursesSprecialization
+
+    def get_queryset(self):
+        a = Course.objects.filter(
+            specialization__courses_specialization__course_students__student=self.request.user
+        )
+        print(a)
+        return Course.objects.filter(
+            specialization__courses_specialization__course_students__student=self.request.user
+        )

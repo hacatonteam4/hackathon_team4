@@ -57,11 +57,11 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(Grade)
 class GradeAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name',)
-    list_editable = ('name',)
-    list_filter = ('name',)
-    search_fields = ('name',)
-    
+    list_display = ('pk', 'name', 'specialization')
+    list_editable = ('name', 'specialization')
+    list_filter = ('name', 'specialization')
+    search_fields = ('name', 'specialization')
+
 
 @admin.register(Direction)
 class DirectionAdmin(admin.ModelAdmin):
