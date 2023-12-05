@@ -8,5 +8,7 @@ app_name = 'api'
 router = DefaultRouter()
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    # path('map/', MapView.as_view()),
+    # path('statistics/', StatisticView.as_view())
 ]
