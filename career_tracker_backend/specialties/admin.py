@@ -5,43 +5,46 @@ from .models import (
 )
 
 
-class DirectionInline(admin.TabularInline):
-    model = Specialization.direction.through
-    extra = 1
-    min_num = 1
+# class DirectionInline(admin.TabularInline):
+#     model = Specialization.direction.through
+#     extra = 1
+#     min_num = 1
 
 
-class SkillsInline(admin.TabularInline):
-    model = Skill
-    extra = 1
-    min_num = 1
+# class SkillsInline(admin.TabularInline):
+#     model = Skill
+#     extra = 1
+#     min_num = 1
 
 
 class SprintInline(admin.TabularInline):
     model = Sprint
     extra = 1
-    min_num = 1
+    min_num = 0
+    filter_horizontal = ('skills',)
+
+    
 
 
 class GradeDirectionInline(admin.TabularInline):
     model = GradeDirection
-    extra = 1
-    min_num = 1
+    extra = 0
+    min_num = 0
 
 
 @admin.register(Specialization)
 class SpecializationAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'display_directions', 'image')
+    list_display = ('__str__', 'pk', 'name', 'image')
     fields = ('name', 'image')
     list_editable = ('name', 'image')
-    list_filter = ('name', 'direction')
-    search_fields = ('name', 'direction')
+    list_filter = ('name',)
+    search_fields = ('name',)
     empty_value_display = '-пусто-'
-    inlines = (DirectionInline,)
+    inlines = (GradeDirectionInline,)
 
-    @admin.display(description='Направления')
-    def display_directions(self, obj):
-        return ", ".join([direction.name for direction in obj.direction.all()])
+    # @admin.display(description='Направления')
+    # def display_directions(self, obj):
+    #     return ", ".join([direction.name for direction in obj.direction.all()])
 
 
 @admin.register(Course)
@@ -56,31 +59,20 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(Grade)
 class GradeAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'specialization', 'display_directions')
-    list_editable = ('name', 'specialization')
-    list_filter = ('name', 'specialization')
-    search_fields = ('name', 'specialization')
-    inlines = (SkillsInline, GradeDirectionInline)
-
-    @admin.display(description='Направления')
-    def display_directions(self, obj):
-        return ", ".join([direction.name for direction in obj.direction.all()])
-
+    list_display = ('pk', 'name',)
+    list_editable = ('name',)
+    list_filter = ('name',)
+    search_fields = ('name',)
+    
 
 @admin.register(Direction)
 class DirectionAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'display_specialization')
+    list_display = ('pk', 'name',)
     list_editable = ('name',)
     list_filter = ('name',)
     search_fields = ('name',)
     empty_value_display = '-пусто-'
-    inlines = (DirectionInline,)
-
-    @admin.display(description='Специальности')
-    def display_specialization(self, obj):
-        return ", ".join(
-            [specialties.name for specialties in obj.specialties.all()]
-        )
+    # inlines = (DirectionInline,)
 
 
 @admin.register(Skill)
@@ -89,13 +81,10 @@ class SkillAdmin(admin.ModelAdmin):
         'pk',
         'name',
         'description',
-        'direction',
-        'grade',
-        'sprint'
     )
-    list_editable = ('name', 'description', 'direction', 'grade', 'sprint')
-    list_filter = ('name', 'direction', 'grade', 'sprint')
-    search_fields = ('name', 'direction', 'grade', 'sprint')
+    list_editable = ('name', 'description',)
+    list_filter = ('name',)
+    search_fields = ('name',)
     empty_value_display = '-пусто-'
 
 
@@ -106,4 +95,3 @@ class SprintAdmin(admin.ModelAdmin):
     list_filter = ('name', 'course')
     search_fields = ('name', 'course')
     empty_value_display = '-пусто-'
-    inlines = (SkillsInline,)
