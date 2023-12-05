@@ -110,6 +110,19 @@ class GradeDirection(models.Model):
     def __str__(self):
         return (f'{self.direction} относится к грейду {self.grade}')
 
+    def save(self, *args, **kwargs):
+        """Проверка наличия общих навыков"""
+        common_skills = Skill.objects.filter(
+            grade=self.grade,
+            direction=self.direction
+        )
+        if not common_skills.exists():
+            raise ValidationError(
+                'Грейд и направление должны иметь общие навыки.'
+            )
+
+        super().save(*args, **kwargs)
+
 
 class Skill(models.Model):
     '''Модель навыка по специальности'''
@@ -145,21 +158,6 @@ class Direction(models.Model):
         verbose_name='Цвет'
     )
 
-    # description = models.TextField(verbose_name='Описание')
-    # specialization = models.ForeignKey(
-    #     Specialization,
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     related_name='direction_specialization',
-    #     verbose_name='Специальность'
-    # )
-    # # grades = models.ManyToManyField(
-    # #     Grade,
-    # #     related_name='grades',
-    # #     through='GradeDirection'
-    # # )
-
-
     class Meta:
         ordering = ('name',)
         verbose_name = 'Направление'
@@ -167,32 +165,6 @@ class Direction(models.Model):
 
     def __str__(self):
         return self.name
-
-
-# class GradeDirectionSkill(models.Model):
-#     '''Связь грейдов и направления специализации'''
-
-#     grade = models.ForeignKey(
-#         Grade,
-#         on_delete=models.CASCADE
-#     )
-#     direction = models.ForeignKey(
-#         Direction,
-#         on_delete=models.CASCADE
-#     )
-#     skills = models.ManyToManyField(Skill, related_name='skill_groups')
-#     description = models.CharField(max_length=MAX_LENGHT)
-
-#     def save(self, *args, **kwargs):
-#         # Проверка наличия общих навыков
-#         common_skills = Skill.objects.filter(
-#             grade=self.grade,
-#             direction=self.direction
-#         )
-#         if not common_skills.exists():
-#             raise ValidationError('Грейд и направление должны иметь общие навыки.')
-
-#         super().save(*args, **kwargs)
 
 
 class Sprint(models.Model):

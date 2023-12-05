@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django import forms
 from django.core.exceptions import ValidationError
 
 from .models import (
@@ -56,15 +55,31 @@ class CourseAdmin(admin.ModelAdmin):
     list_filter = ('name', 'specialization')
     search_fields = ('name', 'specialization')
     empty_value_display = '-пусто-'
-    inlines = (SprintInline,)
+    # inlines = (SprintInline,)
 
 
 @admin.register(Grade)
 class GradeAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name',)
-    list_editable = ('name',)
-    list_filter = ('name',)
-    search_fields = ('name',)
+    list_display = ('pk', 'name', 'specialization', 'display_directions')
+    list_editable = ('name', 'specialization')
+    list_filter = ('name', 'specialization')
+    search_fields = ('name', 'specialization')
+    inlines = (
+        # SkillsInline,
+        GradeDirectionInline,
+    )
+
+    @admin.display(description='Направления')
+    def display_directions(self, obj):
+        return ", ".join([direction.name for direction in obj.direction.all()])
+
+    def save_formset(self, request, form, formset, change):
+        try:
+            return super().save_formset(request, form, formset, change)
+        except ValidationError as e:
+            self.message_user(
+                request, f'Ошибка при сохранении: {e}', level='ERROR'
+            )
 
 
 @admin.register(Direction)

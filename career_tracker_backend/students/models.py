@@ -126,6 +126,23 @@ class StudentCourse(models.Model):
         return f'студент {self.student} проходит курс {self.course}'
 
 
+class StudentSpecialization(models.Model):
+    '''Связь студента со специализацией'''
+
+    student = models.ForeignKey(
+        Student,
+        related_name='student_specialization',
+        verbose_name='Студент',
+        on_delete=models.CASCADE
+    )
+    specialization = models.ForeignKey(
+        Specialization,
+        on_delete=models.CASCADE,
+        related_name='specialization_students',
+        verbose_name='Специальность'
+    )
+
+
 class SkillStudent(models.Model):
     '''Модель связи навыка и студента'''
 
