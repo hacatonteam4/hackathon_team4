@@ -1,4 +1,5 @@
 from django.db import models
+from colorfield.fields import ColorField
 
 
 MAX_LENGHT = 200
@@ -69,6 +70,11 @@ class Grade(models.Model):
         related_name='grade_specialization',
         verbose_name='Специальность'
     )
+    direction = models.ManyToManyField(
+        'Direction',
+        through='GradeDirection',
+        verbose_name='Направление',
+    )
 
     class Meta:
         ordering = ('name',)
@@ -77,6 +83,38 @@ class Grade(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class GradeDirection(models.Model):
+    '''Модель связей грейда и направления'''
+
+    grade = models.ForeignKey(
+        Grade,
+        on_delete=models.CASCADE,
+        related_name='directions_grade',
+        verbose_name='Грейд'
+    )
+    direction = models.ForeignKey(
+        'Direction',
+        on_delete=models.CASCADE,
+        related_name='grades_direction',
+        verbose_name='Направление'
+    )
+    description = models.TextField(verbose_name='Описание')
+
+    class Meta:
+        ordering = ('grade', 'direction')
+        verbose_name = 'Связь грейда и направления'
+        verbose_name_plural = 'Связи грейдов и направлений'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['grade', 'direction'],
+                name='unique_grade_direction'
+            )
+        ]
+
+    def __str__(self):
+        return (f'{self.direction} относится к грейду {self.grade}')
 
 
 class Skill(models.Model):
@@ -126,12 +164,18 @@ class Skill(models.Model):
 
 class Direction(models.Model):
     '''Модель направления навыков специальности'''
-
+    COLOR_PALETTE = [
+        ("#FFFFFF", "white", ),
+        ("#000000", "black", ),
+    ]
     name = models.CharField(
         max_length=MAX_LENGHT,
         verbose_name='Название'
     )
-    description = models.TextField(verbose_name='Описание')
+    color = ColorField(
+        samples=COLOR_PALETTE,
+        verbose_name='Цвет'
+    )
 
     class Meta:
         ordering = ('name',)
