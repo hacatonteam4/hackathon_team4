@@ -1,5 +1,8 @@
 from django.db import models
+
 from colorfield.fields import ColorField
+
+from django.core.exceptions import ValidationError
 
 
 MAX_LENGHT = 200
@@ -13,11 +16,11 @@ class Specialization(models.Model):
         verbose_name='Название специальности',
         unique=True
     )
-    direction = models.ManyToManyField(
-        'Direction',
-        related_name='specialties',
-        verbose_name='Направление обучения'
-    )
+    # direction = models.ManyToManyField(
+    #     'Direction',
+    #     related_name='specialties',
+    #     verbose_name='Направление обучения'
+    # )
     image = models.ImageField(upload_to='specialties/', null=True, blank=True)
 
     class Meta:
@@ -172,10 +175,26 @@ class Direction(models.Model):
         max_length=MAX_LENGHT,
         verbose_name='Название'
     )
+
     color = ColorField(
         samples=COLOR_PALETTE,
         verbose_name='Цвет'
     )
+
+    # description = models.TextField(verbose_name='Описание')
+    # specialization = models.ForeignKey(
+    #     Specialization,
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     related_name='direction_specialization',
+    #     verbose_name='Специальность'
+    # )
+    # # grades = models.ManyToManyField(
+    # #     Grade,
+    # #     related_name='grades',
+    # #     through='GradeDirection'
+    # # )
+
 
     class Meta:
         ordering = ('name',)
@@ -184,6 +203,32 @@ class Direction(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# class GradeDirectionSkill(models.Model):
+#     '''Связь грейдов и направления специализации'''
+
+#     grade = models.ForeignKey(
+#         Grade,
+#         on_delete=models.CASCADE
+#     )
+#     direction = models.ForeignKey(
+#         Direction,
+#         on_delete=models.CASCADE
+#     )
+#     skills = models.ManyToManyField(Skill, related_name='skill_groups')
+#     description = models.CharField(max_length=MAX_LENGHT)
+
+#     def save(self, *args, **kwargs):
+#         # Проверка наличия общих навыков
+#         common_skills = Skill.objects.filter(
+#             grade=self.grade,
+#             direction=self.direction
+#         )
+#         if not common_skills.exists():
+#             raise ValidationError('Грейд и направление должны иметь общие навыки.')
+
+#         super().save(*args, **kwargs)
 
 
 class Sprint(models.Model):

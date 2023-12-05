@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django import forms
+from django.core.exceptions import ValidationError
 
 from .models import (
     Specialization, Course, Grade, Skill, Direction, Sprint, GradeDirection
@@ -37,11 +39,11 @@ class SpecializationAdmin(admin.ModelAdmin):
     list_filter = ('name', 'direction')
     search_fields = ('name', 'direction')
     empty_value_display = '-пусто-'
-    inlines = (DirectionInline,)
+    # inlines = (DirectionInline,)
 
-    @admin.display(description='Направления')
-    def display_directions(self, obj):
-        return ", ".join([direction.name for direction in obj.direction.all()])
+    # @admin.display(description='Направления')
+    # def display_directions(self, obj):
+    #     return ", ".join([direction.name for direction in obj.direction.all()])
 
 
 @admin.register(Course)
@@ -76,11 +78,11 @@ class DirectionAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
     inlines = (DirectionInline, SkillsInline,)
 
-    @admin.display(description='Специальности')
-    def display_specialization(self, obj):
-        return ", ".join(
-            [specialties.name for specialties in obj.specialties.all()]
-        )
+    # @admin.display(description='Специальности')
+    # def display_specialization(self, obj):
+    #     return ", ".join(
+    #         [specialties.name for specialties in obj.specialties.all()]
+    #     )
 
 
 @admin.register(Skill)
@@ -107,3 +109,15 @@ class SprintAdmin(admin.ModelAdmin):
     search_fields = ('name', 'course')
     empty_value_display = '-пусто-'
     # inlines = (SkillsInline,)
+
+
+# @admin.register(GradeDirectionSkill)
+# class SkillGroupAdmin(admin.ModelAdmin):
+#     fields = ('grade', 'direction', 'description')
+
+#     def save_model(self, request, obj, form, change):
+#         try:
+#             obj.save()
+#         except ValidationError as e:
+#             self.message_user(request, f'Ошибка при сохранении: {e}', level='ERROR')
+# >>>>>>> abbd7b8 (Модель GradeDirectionSkill для связи грейда и нарпвления, ограничение на добавление без общих скилов)
