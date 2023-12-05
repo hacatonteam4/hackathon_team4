@@ -74,7 +74,7 @@ class DirectionAdmin(admin.ModelAdmin):
     list_filter = ('name',)
     search_fields = ('name',)
     empty_value_display = '-пусто-'
-    inlines = (DirectionInline, SkillsInline,)
+    inlines = (DirectionInline,)
 
     @admin.display(description='Специальности')
     def display_specialization(self, obj):
@@ -106,4 +106,4 @@ class SprintAdmin(admin.ModelAdmin):
     list_filter = ('name', 'course')
     search_fields = ('name', 'course')
     empty_value_display = '-пусто-'
-    # inlines = (SkillsInline,)
+    inlines = (SkillsInline,)
