@@ -56,6 +56,21 @@ class StudentTest(models.Model):
                 f'на {self.percentage}% с результатом {self.result}')
 
 
+class StudentSpecialization(models.Model):
+
+    student = models.ForeignKey(
+        Student,
+        related_name='student_specialization',
+        verbose_name='Студент',
+        on_delete=models.CASCADE
+    )
+    specialization = models.ForeignKey(
+        Specialization,
+        on_delete=models.CASCADE,
+        related_name='specialization_students'
+    )
+
+
 class StudentCourse(models.Model):
     """Связь студентов с курсами"""
 

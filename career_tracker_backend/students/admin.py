@@ -35,8 +35,8 @@ class StudentSpecializationInline(admin.TabularInline):
 class StudentAdmin(UserAdmin):
     inlines = (
         StudentCourseInline,
-        SprintStudentInline,
-        StudentSpecializationInline
+        StudentSpecializationInline,
+        SprintStudentInline
     )
 
 
