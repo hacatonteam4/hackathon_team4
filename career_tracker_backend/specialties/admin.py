@@ -90,8 +90,14 @@ class SkillAdmin(admin.ModelAdmin):
 
 @admin.register(Sprint)
 class SprintAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'course')
+    list_display = ('pk', 'name', 'course', 'list_skills')
     list_editable = ('name', 'course')
     list_filter = ('name', 'course')
     search_fields = ('name', 'course')
     empty_value_display = '-пусто-'
+
+    @admin.display(description='Навык')
+    def list_skills(self, obj):
+        return ", ".join(
+            [skill.name for skill in obj.skills.all()]
+        )

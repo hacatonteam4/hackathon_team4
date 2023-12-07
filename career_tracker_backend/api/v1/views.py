@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from rest_framework import generics
-# from rest_framework.views import APIView
 
 from .serializers import (
     GetDirectionSerializer,
@@ -30,9 +29,6 @@ class DirectionView(generics.ListAPIView):
         return Direction.objects.filter(
             grades_direction__specialization__in=specialization_student
         )
-        # return Direction.objects.filter(
-        #     grades_direction__specialization__specialization_students__student=self.request.user
-        # )
 
 
 class GetPlanStudent(generics.ListAPIView):
