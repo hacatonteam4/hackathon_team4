@@ -1,8 +1,5 @@
 from django.db import models
-
 from colorfield.fields import ColorField
-
-from django.core.exceptions import ValidationError
 
 
 MAX_LENGHT = 200
@@ -110,19 +107,6 @@ class GradeDirection(models.Model):
     def __str__(self):
         return (f'{self.direction} относится к грейду {self.grade}')
 
-    def save(self, *args, **kwargs):
-        """Проверка наличия общих навыков"""
-        common_skills = Skill.objects.filter(
-            grade=self.grade,
-            direction=self.direction
-        )
-        if not common_skills.exists():
-            raise ValidationError(
-                'Грейд и направление должны иметь общие навыки.'
-            )
-
-        super().save(*args, **kwargs)
-
 
 class Skill(models.Model):
     '''Модель навыка по специальности'''
@@ -152,7 +136,6 @@ class Direction(models.Model):
         max_length=MAX_LENGHT,
         verbose_name='Название'
     )
-
     color = ColorField(
         samples=COLOR_PALETTE,
         verbose_name='Цвет'
