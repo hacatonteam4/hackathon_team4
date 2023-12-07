@@ -8,10 +8,11 @@ class GradeDirectionSerializator(serializers.ModelSerializer):
 
     id = serializers.IntegerField(source='direction.id')
     name = serializers.ReadOnlyField(source='direction.name')
+    color = serializers.ReadOnlyField(source='direction.color')
 
     class Meta:
         model = GradeDirection
-        fields = ('id', 'name', 'description')
+        fields = ('id', 'name', 'color', 'description')
 
 
 class GetGradeDirectionDescriptionSerializator(serializers.ModelSerializer):
