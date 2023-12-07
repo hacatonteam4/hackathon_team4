@@ -6,7 +6,8 @@ from drf_yasg.utils import swagger_auto_schema
 
 from specialties.models import Specialization, Grade, Direction, Skill, Course
 from api.v1.serializers import (SkillsSerializer, StatisticSerializer,
-                                StatisticDirectionsSerializer, GetCoursesSprecialization, GetGradeDirectionDescriptionSerializator)
+                                StatisticDirectionsSerializer, GetCoursesSprecialization,
+                                GetGradeDirectionDescriptionSerializator, GetDirectionSerializer)
 
 
 class StatisticsView(APIView):
@@ -128,3 +129,17 @@ class GradeDirectionDescription(generics.ListAPIView):
         return Grade.objects.filter(
             directions_grade__specialization__in=specialization_student
         ).distinct()
+
+
+class DirectionView(generics.ListAPIView):
+    '''Обработка запроса на получение направлений специализации студента'''
+
+    serializer_class = GetDirectionSerializer
+
+    def get_queryset(self):
+        specialization_student = Specialization.objects.filter(
+            specialization_students__student=self.request.user
+        )
+        return Direction.objects.filter(
+            grades_direction__specialization__in=specialization_student
+        )
