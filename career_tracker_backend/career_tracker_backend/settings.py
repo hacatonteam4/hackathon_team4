@@ -24,8 +24,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'rest_framework.authtoken',
+    'colorfield',
+
     'prof_tests.apps.ProfTestsConfig',
     'students.apps.StudentsConfig',
     'specialties.apps.SpecialtiesConfig',
