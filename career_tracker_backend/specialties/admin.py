@@ -23,8 +23,6 @@ class SprintInline(admin.TabularInline):
     min_num = 0
     filter_horizontal = ('skills',)
 
-    
-
 
 class GradeDirectionInline(admin.TabularInline):
     model = GradeDirection
