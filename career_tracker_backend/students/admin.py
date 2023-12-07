@@ -1,7 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from students.models import StudentCourse, SkillStudent, SprintStudent, Student
+from students.models import (
+    StudentCourse,
+    SkillStudent,
+    SprintStudent,
+    Student,
+    StudentSpecialization
+)
 
 
 class StudentCourseInline(admin.TabularInline):
@@ -22,8 +28,18 @@ class SprintStudentInline(admin.TabularInline):
     min_num = 1
 
 
+class StudentSpecializationInline(admin.TabularInline):
+    model = StudentSpecialization
+    extra = 1
+    min_num = 1
+
+
 class StudentAdmin(UserAdmin):
-    inlines = (StudentCourseInline, SkillStudentInline, SprintStudentInline)
+    inlines = (
+        StudentCourseInline,
+        StudentSpecializationInline,
+        SprintStudentInline
+    )
 
 
 admin.site.unregister(Student)

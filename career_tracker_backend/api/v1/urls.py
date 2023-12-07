@@ -2,13 +2,16 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
+from .views import DirectionView
+
 
 app_name = 'api'
 
 router = DefaultRouter()
 
 urlpatterns = [
+    path('directions/', DirectionView.as_view()),
     path('', include(router.urls)),
-#     path('map/', MapView.as_view()),
-#     path('statistics/', StatisticView.as_view())
+    # path('map/', MapView.as_view()),
+    # path('statistics/', StatisticView.as_view())
 ]

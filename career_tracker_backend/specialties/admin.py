@@ -23,8 +23,6 @@ class SprintInline(admin.TabularInline):
     min_num = 0
     filter_horizontal = ('skills',)
 
-    
-
 
 class GradeDirectionInline(admin.TabularInline):
     model = GradeDirection
@@ -44,7 +42,9 @@ class SpecializationAdmin(admin.ModelAdmin):
 
     # @admin.display(description='Направления')
     # def display_directions(self, obj):
-    #     return ", ".join([direction.name for direction in obj.direction.all()])
+    #     return ", ".join(
+    #         [direction.name for direction in obj.direction.all()]
+    #     )
 
 
 @admin.register(Course)
@@ -63,7 +63,7 @@ class GradeAdmin(admin.ModelAdmin):
     list_editable = ('name',)
     list_filter = ('name',)
     search_fields = ('name',)
-    
+
 
 @admin.register(Direction)
 class DirectionAdmin(admin.ModelAdmin):
