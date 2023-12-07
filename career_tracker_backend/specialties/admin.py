@@ -42,7 +42,9 @@ class SpecializationAdmin(admin.ModelAdmin):
 
     # @admin.display(description='Направления')
     # def display_directions(self, obj):
-    #     return ", ".join([direction.name for direction in obj.direction.all()])
+    #     return ", ".join(
+    #         [direction.name for direction in obj.direction.all()]
+    #     )
 
 
 @admin.register(Course)
@@ -57,10 +59,10 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(Grade)
 class GradeAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'specialization')
-    list_editable = ('name', 'specialization')
-    list_filter = ('name', 'specialization')
-    search_fields = ('name', 'specialization')
+    list_display = ('pk', 'name',)
+    list_editable = ('name',)
+    list_filter = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(Direction)

@@ -68,5 +68,5 @@ class GetPlanStudent(generics.ListAPIView):
 
     def get_queryset(self):
         return Course.objects.filter(
-            specialization__courses_specialization__course_students__student=self.request.user
+            specialization__specialization_students__student=self.request.user
         )

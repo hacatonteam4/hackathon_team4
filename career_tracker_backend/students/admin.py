@@ -1,8 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from students.models import (StudentCourse, SkillStudent, Student,
-                             SprintStudent, StudentSpecialization)
+from students.models import (
+    StudentCourse,
+    StudentSpecialization,
+    SprintStudent,
+    SkillStudent,
+    Student
+)
 
 
 class StudentCourseInline(admin.TabularInline):
@@ -13,6 +18,12 @@ class StudentCourseInline(admin.TabularInline):
 
 class SkillStudentInline(admin.TabularInline):
     model = SkillStudent
+    extra = 1
+    min_num = 1
+
+
+class StudentSpecializationInline(admin.TabularInline):
+    model = StudentSpecialization
     extra = 1
     min_num = 0
 
