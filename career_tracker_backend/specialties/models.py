@@ -1,4 +1,5 @@
 from django.db import models
+from colorfield.fields import ColorField
 
 
 MAX_LENGHT = 200
@@ -12,11 +13,11 @@ class Specialization(models.Model):
         verbose_name='Название специальности',
         unique=True
     )
-    direction = models.ManyToManyField(
-        'Direction',
-        related_name='specialties',
-        verbose_name='Направление обучения'
-    )
+    # direction = models.ManyToManyField(
+    #     'Direction',
+    #     related_name='specialties',
+    #     verbose_name='Направление обучения'
+    # )
     image = models.ImageField(upload_to='specialties/', null=True, blank=True)
 
     class Meta:
@@ -25,7 +26,7 @@ class Specialization(models.Model):
         verbose_name_plural = 'Специальности'
 
     def __str__(self):
-        return self.name
+        return f'Специальность: {self.name}'
 
 
 class Course(models.Model):
@@ -62,13 +63,18 @@ class Grade(models.Model):
         verbose_name='Название грейда',
         unique=True
     )
-    specialization = models.ForeignKey(
-        Specialization,
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='grade_specialization',
-        verbose_name='Специальность'
-    )
+    # specialization = models.ForeignKey(
+    #     Specialization,
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     related_name='grade_specialization',
+    #     verbose_name='Специальность'
+    # )
+    # direction = models.ManyToManyField(
+    #     'Direction',
+    #     through='GradeDirection',
+    #     verbose_name='Направление',
+    # )
 
     class Meta:
         ordering = ('name',)
@@ -79,6 +85,46 @@ class Grade(models.Model):
         return self.name
 
 
+class GradeDirection(models.Model):
+    '''Модель связей грейда и направления'''
+    skills = models.ManyToManyField(
+        'Skill',
+        related_name='grades_digrections'
+    )
+    specialization = models.ForeignKey(
+        Specialization,
+        on_delete=models.CASCADE,
+        related_name='grades_digrections'
+    )
+    grade = models.ForeignKey(
+        Grade,
+        on_delete=models.CASCADE,
+        related_name='directions_grade',
+        verbose_name='Грейд'
+    )
+    direction = models.ForeignKey(
+        'Direction',
+        on_delete=models.CASCADE,
+        related_name='grades_direction',
+        verbose_name='Направление'
+    )
+    description = models.TextField(verbose_name='Описание')
+
+    class Meta:
+        ordering = ('grade', 'direction')
+        verbose_name = 'Связь грейда и направления'
+        verbose_name_plural = 'Связи грейдов и направлений'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['grade', 'direction'],
+                name='unique_grade_direction'
+            )
+        ]
+
+    def __str__(self):
+        return (f'{self.direction} относится к грейду {self.grade}')
+
+
 class Skill(models.Model):
     '''Модель навыка по специальности'''
 
@@ -87,38 +133,32 @@ class Skill(models.Model):
         verbose_name='Название навыка',
     )
     description = models.TextField(verbose_name='Описание')
-    direction = models.ForeignKey(
-        'Direction',
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='skills_direction',
-        verbose_name='Направление'
-    )
-    grade = models.ForeignKey(
-        'Grade',
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='skills_grade',
-        verbose_name='Грейд'
-    )
-    sprint = models.ForeignKey(
-        'Sprint',
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='skills_sprint',
-        verbose_name='Спринт'
-    )
+    # direction = models.ForeignKey(
+    #     'Direction',
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     related_name='skills_direction',
+    #     verbose_name='Направление'
+    # )
+    # grade = models.ForeignKey(
+    #     'Grade',
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     related_name='skills_grade',
+    #     verbose_name='Грейд'
+    # )
+    # sprint = models.ForeignKey(
+    #     'Sprint',
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     related_name='skills_sprint',
+    #     verbose_name='Спринт'
+    # )
 
     class Meta:
         ordering = ('name',)
         verbose_name = 'Навык'
         verbose_name_plural = 'Навыки'
-        constraints = [
-            models.UniqueConstraint(
-                fields=('name', 'direction',),
-                name='unique_direction_skill'
-            )
-        ]
 
     def __str__(self):
         return self.name
@@ -126,12 +166,18 @@ class Skill(models.Model):
 
 class Direction(models.Model):
     '''Модель направления навыков специальности'''
-
+    COLOR_PALETTE = [
+        ("#FFFFFF", "white", ),
+        ("#000000", "black", ),
+    ]
     name = models.CharField(
         max_length=MAX_LENGHT,
         verbose_name='Название'
     )
-    description = models.TextField(verbose_name='Описание')
+    color = ColorField(
+        samples=COLOR_PALETTE,
+        verbose_name='Цвет'
+    )
 
     class Meta:
         ordering = ('name',)
@@ -154,6 +200,10 @@ class Sprint(models.Model):
         on_delete=models.CASCADE,
         related_name='sprints_course',
         verbose_name='Курс'
+    )
+    skills = models.ManyToManyField(
+        Skill,
+        related_name='sprint_skills'
     )
 
     class Meta:
