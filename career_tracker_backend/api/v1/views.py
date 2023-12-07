@@ -3,6 +3,7 @@ from rest_framework import generics
 from .serializers import GetGradeDirectionDescriptionSerializator
 from specialties.models import (
     Grade,
+    Specialization
 )
 
 
@@ -11,7 +12,7 @@ class GradeDirectionDescription(generics.ListAPIView):
     Обработка запроса на получение описания группы навыков,
     связанных с пересечением грейда и направления.
     Возвращает:
-        JsonResponse: JSON-ответ, содержащий описания групп навыков.          
+        JsonResponse: JSON-ответ, содержащий описания групп навыков.
 
     Пример использования:
         GET /api/v1/description_direction/
@@ -26,12 +27,14 @@ class GradeDirectionDescription(generics.ListAPIView):
                         {
                             "id": 1,
                             "name": "Direction 1",
+                            "color": "#6F78FF",
                             "description": "Description"
                         },
                         {
                             "id": 2,
                             "name": "Direction 2",
-                            "description": "Description"
+                            "color": "#FFFFFF",
+                            "description": "Description 2"
                         }
                     ]
                 },
@@ -42,6 +45,7 @@ class GradeDirectionDescription(generics.ListAPIView):
                         {
                             "id": 1,
                             "name": "Direction 1",
+                            "color": "#6F78FF",
                             "description": "Description"
                         }
                     ]
@@ -53,6 +57,9 @@ class GradeDirectionDescription(generics.ListAPIView):
     serializer_class = GetGradeDirectionDescriptionSerializator
 
     def get_queryset(self):
-        return Grade.objects.filter(
-            specialization__specialization_students__student=self.request.user
+        specialization_student = Specialization.objects.filter(
+            specialization_students__student=self.request.user
         )
+        return Grade.objects.filter(
+            directions_grade__specialization__in=specialization_student
+        ).distinct()
