@@ -26,7 +26,7 @@ class Specialization(models.Model):
         verbose_name_plural = 'Специальности'
 
     def __str__(self):
-        return f'Специальность: {self.name}'
+        return f'{self.name}'
 
 
 class Course(models.Model):
@@ -89,12 +89,12 @@ class GradeDirection(models.Model):
     '''Модель связей грейда и направления'''
     skills = models.ManyToManyField(
         'Skill',
-        related_name='grades_digrections'
+        related_name='grades_directions'
     )
     specialization = models.ForeignKey(
         Specialization,
         on_delete=models.CASCADE,
-        related_name='grades_digrections'
+        related_name='grades_directions'
     )
     grade = models.ForeignKey(
         Grade,
