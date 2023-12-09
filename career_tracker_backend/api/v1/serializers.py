@@ -3,7 +3,8 @@ from drf_base64.fields import Base64ImageField
 
 from specialties.models import (Direction, Specialization,
                                 Grade, GradeDirection, Skill)
-from students.models import SkillStudent, StudentCourse, Student, StudentSpecialization
+from students.models import (SkillStudent, StudentCourse,
+                             Student, StudentSpecialization)
 
 
 class GradeSerializer(serializers.ModelSerializer):
@@ -31,10 +32,11 @@ class SpecializationSerializer(serializers.ModelSerializer):
     '''Отображение специальности в статистике'''
     name = serializers.CharField(source='specialization.name')
     current_grade = GradeSerializer()
+    image = Base64ImageField(source='specialization.image')
 
     class Meta:
         model = StudentSpecialization
-        fields = ('id', 'name', 'current_grade')
+        fields = ('id', 'name', 'current_grade', 'image')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -46,15 +48,24 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'specializations')
 
 
-class MapSerializer(serializers.ModelSerializer):
-    direction = serializers.SerializerMethodField()
+class DirectionSkillSerializator(serializers.ModelSerializer):
+    """Сериализатор для направлений в рамках конкретного навыка"""
+
+    id = serializers.IntegerField(source='direction.id')
+    name = serializers.ReadOnlyField(source='direction.name')
+    color = serializers.ReadOnlyField(source='direction.color')
+
+    class Meta:
+        model = GradeDirection
+        fields = ('id', 'name', 'color')
+
+
+class CompleteSkillsSerializer(serializers.ModelSerializer):
+    direction = DirectionSkillSerializator(
+        many=True,
+        source='grades_directions'
+    )
 
     class Meta:
         model = Skill
         fields = ('id', 'name', 'direction')
-
-    def get_direction(self, obj):
-        dicrection = Direction.objects.filter(
-            grades_direction__skills=obj
-        )
-        return dicrection

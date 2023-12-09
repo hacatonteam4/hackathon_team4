@@ -13,11 +13,6 @@ class Specialization(models.Model):
         verbose_name='Название специальности',
         unique=True
     )
-    # direction = models.ManyToManyField(
-    #     'Direction',
-    #     related_name='specialties',
-    #     verbose_name='Направление обучения'
-    # )
     image = models.ImageField(upload_to='specialties/', null=True, blank=True)
 
     class Meta:
@@ -63,18 +58,6 @@ class Grade(models.Model):
         verbose_name='Название грейда',
         unique=True
     )
-    # specialization = models.ForeignKey(
-    #     Specialization,
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     related_name='grade_specialization',
-    #     verbose_name='Специальность'
-    # )
-    # direction = models.ManyToManyField(
-    #     'Direction',
-    #     through='GradeDirection',
-    #     verbose_name='Направление',
-    # )
 
     class Meta:
         ordering = ('name',)
@@ -133,27 +116,6 @@ class Skill(models.Model):
         verbose_name='Название навыка',
     )
     description = models.TextField(verbose_name='Описание')
-    # direction = models.ForeignKey(
-    #     'Direction',
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     related_name='skills_direction',
-    #     verbose_name='Направление'
-    # )
-    # grade = models.ForeignKey(
-    #     'Grade',
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     related_name='skills_grade',
-    #     verbose_name='Грейд'
-    # )
-    # sprint = models.ForeignKey(
-    #     'Sprint',
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     related_name='skills_sprint',
-    #     verbose_name='Спринт'
-    # )
 
     class Meta:
         ordering = ('name',)
