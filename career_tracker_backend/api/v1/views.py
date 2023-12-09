@@ -39,7 +39,6 @@ class DirectionsInStatisticsView(generics.ListAPIView):
         )
 
 
-
 # class StatisticsView(generics.ListAPIView):
 #     serializer_class = SpecializationSerializer
 
@@ -80,7 +79,7 @@ class CompleteSkillsView(generics.ListAPIView):
         )
         skills = Skill.objects.filter(
             grades_directions__grade=grade,
-            students_skill__student=self.request.user
+            sprint_skills__students_sprint__student=self.request.user
         )
         return skills
 
@@ -93,7 +92,7 @@ class UnexploredSkillsView(generics.ListAPIView):
             students_specialization__student=self.request.user
         )
         skills = Skill.objects.exclude(
-            students_skill__student=self.request.user
+            sprint_skills__students_sprint__student=self.request.user
         ).filter(grades_directions__grade=grade)
         print(skills)
         return skills

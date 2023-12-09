@@ -23,7 +23,7 @@ class GradeSerializer(serializers.ModelSerializer):
         ).count()
         student_skills = Skill.objects.filter(
             grades_directions__grade=obj,
-            students_skill__student=student
+            sprint_skills__students_sprint__student=student
         ).count()
         return int(student_skills / grade_skills * 100)
 
