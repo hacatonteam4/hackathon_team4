@@ -5,13 +5,32 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from prof_tests.models import Test
-from specialties.models import Course, Sprint, Skill
+from specialties.models import Course, Sprint, Skill, Specialization, Grade
 
 
 PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]
 
 
 Student = get_user_model()
+
+
+class StudentSpecialization(models.Model):
+    '''Связь студентов и грейдов'''
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name='students_specialization'
+    )
+    specialization = models.ForeignKey(
+        Specialization,
+        on_delete=models.CASCADE,
+        related_name='students_specialization'
+    )
+    current_grade = models.ForeignKey(
+        Grade,
+        on_delete=models.CASCADE,
+        related_name='students_specialization'
+    )
 
 
 class StudentTest(models.Model):
@@ -112,7 +131,7 @@ class SkillStudent(models.Model):
         verbose_name_plural = 'Связь студентов и навыков'
 
     def __str__(self):
-        return f'Студент {self.student} изучает навык {self.skill}'
+        return f'Студент {self.student} изучил навык {self.skill}'
 
 
 class SprintStudent(models.Model):
@@ -137,4 +156,4 @@ class SprintStudent(models.Model):
         verbose_name_plural = 'Связь студентов и спринтов'
 
     def __str__(self):
-        return f'Студент {self.student} проходит спринт {self.sprint}'
+        return f'Студент {self.student} прошел спринт {self.sprint}'

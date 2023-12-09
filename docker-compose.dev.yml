@@ -1,0 +1,17 @@
+version: "3.9"
+
+volumes:
+  pg:
+
+
+services:
+
+  db:
+    image: postgres:15
+    container_name: db
+    env_file: .env
+    volumes:
+      - pg:/var/lib/postgresql/data
+    ports:
+      - "{DB_PORT}:{DB_PORT}"
+    command: -p ${DB_PORT}

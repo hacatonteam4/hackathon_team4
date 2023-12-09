@@ -13,11 +13,6 @@ class Specialization(models.Model):
         verbose_name='Название специальности',
         unique=True
     )
-    direction = models.ManyToManyField(
-        'Direction',
-        related_name='specialties',
-        verbose_name='Направление обучения'
-    )
     image = models.ImageField(upload_to='specialties/', null=True, blank=True)
 
     class Meta:
@@ -26,7 +21,7 @@ class Specialization(models.Model):
         verbose_name_plural = 'Специальности'
 
     def __str__(self):
-        return self.name
+        return f'{self.name}'
 
 
 class Course(models.Model):
@@ -63,18 +58,6 @@ class Grade(models.Model):
         verbose_name='Название грейда',
         unique=True
     )
-    specialization = models.ForeignKey(
-        Specialization,
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='grade_specialization',
-        verbose_name='Специальность'
-    )
-    direction = models.ManyToManyField(
-        'Direction',
-        through='GradeDirection',
-        verbose_name='Направление',
-    )
 
     class Meta:
         ordering = ('name',)
@@ -87,7 +70,15 @@ class Grade(models.Model):
 
 class GradeDirection(models.Model):
     '''Модель связей грейда и направления'''
-
+    skills = models.ManyToManyField(
+        'Skill',
+        related_name='grades_directions'
+    )
+    specialization = models.ForeignKey(
+        Specialization,
+        on_delete=models.CASCADE,
+        related_name='grades_directions'
+    )
     grade = models.ForeignKey(
         Grade,
         on_delete=models.CASCADE,
@@ -125,38 +116,11 @@ class Skill(models.Model):
         verbose_name='Название навыка',
     )
     description = models.TextField(verbose_name='Описание')
-    direction = models.ForeignKey(
-        'Direction',
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='skills_direction',
-        verbose_name='Направление'
-    )
-    grade = models.ForeignKey(
-        'Grade',
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='skills_grade',
-        verbose_name='Грейд'
-    )
-    sprint = models.ForeignKey(
-        'Sprint',
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='skills_sprint',
-        verbose_name='Спринт'
-    )
 
     class Meta:
         ordering = ('name',)
         verbose_name = 'Навык'
         verbose_name_plural = 'Навыки'
-        constraints = [
-            models.UniqueConstraint(
-                fields=('name', 'direction',),
-                name='unique_direction_skill'
-            )
-        ]
 
     def __str__(self):
         return self.name
@@ -198,6 +162,10 @@ class Sprint(models.Model):
         on_delete=models.CASCADE,
         related_name='sprints_course',
         verbose_name='Курс'
+    )
+    skills = models.ManyToManyField(
+        Skill,
+        related_name='sprint_skills'
     )
 
     class Meta:
