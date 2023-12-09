@@ -78,6 +78,20 @@ class GetPlanStudent(generics.ListAPIView):
         )
 
 
+class DirectionView(generics.ListAPIView):
+    '''Обработка запроса на получение направлений специализации студента'''
+
+    serializer_class = GetDirectionSerializer
+
+    def get_queryset(self):
+        specialization_student = Specialization.objects.filter(
+            specialization_students__student=self.request.user
+        )
+        return Direction.objects.filter(
+            grades_direction__specialization__in=specialization_student
+        )
+
+
 class GradeDirectionDescription(generics.ListAPIView):
     """
     Обработка запроса на получение описания группы навыков,
@@ -134,17 +148,3 @@ class GradeDirectionDescription(generics.ListAPIView):
         return Grade.objects.filter(
             directions_grade__specialization__in=specialization_student
         ).distinct()
-
-
-class DirectionView(generics.ListAPIView):
-    '''Обработка запроса на получение направлений специализации студента'''
-
-    serializer_class = GetDirectionSerializer
-
-    def get_queryset(self):
-        specialization_student = Specialization.objects.filter(
-            specialization_students__student=self.request.user
-        )
-        return Direction.objects.filter(
-            grades_direction__specialization__in=specialization_student
-        )

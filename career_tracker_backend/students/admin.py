@@ -51,6 +51,11 @@ class StudentSpecializationInline(admin.TabularInline):
     min_num = 1
 
 
+class StudentSpecializationInline(admin.TabularInline):
+    model = StudentSpecialization
+    extra = 1
+
+
 class StudentAdmin(UserAdmin):
     inlines = (StudentCourseInline, SkillStudentInline,
                SprintStudentInline, StudentSpecializationInline)
