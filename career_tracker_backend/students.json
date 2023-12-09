@@ -1,0 +1,43 @@
+[
+{
+  "model": "students.studentcourse",
+  "pk": 1,
+  "fields": {
+    "student": 2,
+    "course": 1,
+    "status_payment": false
+  }
+},
+{
+  "model": "students.studentspecialization",
+  "pk": 1,
+  "fields": {
+    "student": 2,
+    "specialization": 1
+  }
+},
+{
+  "model": "students.sprintstudent",
+  "pk": 1,
+  "fields": {
+    "sprint": 1,
+    "student": 2
+  }
+},
+{
+  "model": "students.sprintstudent",
+  "pk": 2,
+  "fields": {
+    "sprint": 2,
+    "student": 2
+  }
+},
+{
+  "model": "students.sprintstudent",
+  "pk": 3,
+  "fields": {
+    "sprint": 3,
+    "student": 2
+  }
+}
+]
