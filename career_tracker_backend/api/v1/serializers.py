@@ -28,29 +28,6 @@ class GradeSerializer(serializers.ModelSerializer):
         return int(student_skills / grade_skills * 100)
 
 
-# class GradeSerializer(serializers.ModelSerializer):
-#     '''Отображение грейда и его процента в статистике'''
-
-#     id = serializers.IntegerField(source='grade.id')
-#     name = serializers.CharField(source='grade.name')
-#     percent_grade = serializers.SerializerMethodField()
-
-#     class Meta:
-#         model = GradeDirection
-#         fields = ('id', 'name', 'percent_grade',)
-
-#     def get_percent_grade(self, obj):
-#         student = self.context.get('request').user
-#         grade_skills = Skill.objects.filter(
-#             grades_directions__grade=obj
-#         ).count()
-#         student_skills = Skill.objects.filter(
-#             grades_directions__grade=obj,
-#             students_skill__student=student
-#         ).count()
-#         return int(student_skills / grade_skills * 100)
-
-
 class DirectionSkillSerializator(serializers.ModelSerializer):
     """Сериализатор для направлений в рамках конкретного навыка"""
 
@@ -63,50 +40,11 @@ class DirectionSkillSerializator(serializers.ModelSerializer):
         fields = ('id', 'name', 'color')
 
 
-# class DirectionsInSpecialization(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Direction
-#         fields = ('id', 'name', 'color')
-
-
-# class SpecializationSerializer(serializers.ModelSerializer):
-#     grade = GradeSerializer(source='grades_directions.grade', many=True)
-
-#     class Meta:
-#         model = Specialization
-#         fields = ('id', 'name', 'image', 'grade',)
-
-
-# class SpecializationSerializer(serializers.ModelSerializer):
-#     id = serializers.IntegerField(source='specialization.id')
-#     name = serializers.CharField(source='specialization.name')
-#     image = Base64ImageField(source='specialization.image')
-#     grade = GradeSerializer()
-#     directions = DirectionsInSpecialization(many=True, source='grades_direction')
-
-#     class Meta:
-#         model = GradeDirection
-#         fields = ('id', 'name', 'image', 'grade', 'directions')
-
-
-# class DirectionSerializer(serializers.ModelSerializer):
-#     directions = DirectionSkillSerializator(
-#         many=True, source='grades_directions')
-
-#     class Meta:
-#         model = Specialization
-#         fields = ('directions',)
-
-
 class SpecializationSerializer(serializers.ModelSerializer):
     '''Отображение специальности в статистике'''
     name = serializers.CharField(source='specialization.name')
     current_grade = GradeSerializer()
     image = Base64ImageField(source='specialization.image')
-    # directions = DirectionSerializer(
-    #     source='specialization'
-    # )
 
     class Meta:
         model = StudentSpecialization

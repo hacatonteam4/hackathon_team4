@@ -39,38 +39,6 @@ class DirectionsInStatisticsView(generics.ListAPIView):
         )
 
 
-
-# class StatisticsView(generics.ListAPIView):
-#     serializer_class = SpecializationSerializer
-
-#     def get_queryset(self):
-#         specialization = Specialization.objects.get(
-#             students_specialization__student=self.request.user
-#         )
-#         grade = Grade.objects.get(
-#             students_specialization__student=self.request.user,
-#             students_specialization__specialization=specialization
-#         )
-#         return GradeDirection.objects.filter(
-#             specialization=specialization,
-#             grade=grade
-#         )
-
-
-# class StatisticsView(generics.ListAPIView):
-#     serializer_class = SpecializationSerializer
-
-#     def get_queryset(self):
-
-#         print('aaaaaaaaaaaaaaaaaaaaaa', Specialization.objects.filter(
-#             students_specialization__student=self.request.user
-#         ))
-
-#         return Specialization.objects.filter(
-#             students_specialization__student=self.request.user
-#         )
-
-
 class CompleteSkillsView(generics.ListAPIView):
     serializer_class = SkillsSerializer
 
