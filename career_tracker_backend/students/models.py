@@ -131,7 +131,7 @@ class SkillStudent(models.Model):
         verbose_name_plural = 'Связь студентов и навыков'
 
     def __str__(self):
-        return f'Студент {self.student} изучает навык {self.skill}'
+        return f'Студент {self.student} изучил навык {self.skill}'
 
 
 class SprintStudent(models.Model):
@@ -156,4 +156,4 @@ class SprintStudent(models.Model):
         verbose_name_plural = 'Связь студентов и спринтов'
 
     def __str__(self):
-        return f'Студент {self.student} проходит спринт {self.sprint}'
+        return f'Студент {self.student} прошел спринт {self.sprint}'
