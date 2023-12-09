@@ -74,7 +74,7 @@ class GetPlanStudent(generics.ListAPIView):
 
     def get_queryset(self):
         return Course.objects.filter(
-            specialization__specialization_students__student=self.request.user
+            specialization__students_specialization__student=self.request.user
         )
 
 
@@ -85,7 +85,7 @@ class DirectionView(generics.ListAPIView):
 
     def get_queryset(self):
         specialization_student = Specialization.objects.filter(
-            specialization_students__student=self.request.user
+            students_specialization__student=self.request.user
         )
         return Direction.objects.filter(
             grades_direction__specialization__in=specialization_student
@@ -143,7 +143,7 @@ class GradeDirectionDescription(generics.ListAPIView):
 
     def get_queryset(self):
         specialization_student = Specialization.objects.filter(
-            specialization_students__student=self.request.user
+            students_specialization__student=self.request.user
         )
         return Grade.objects.filter(
             directions_grade__specialization__in=specialization_student
