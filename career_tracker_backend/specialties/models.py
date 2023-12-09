@@ -45,6 +45,14 @@ class Course(models.Model):
         related_name='courses_specialization',
         verbose_name='Специальность'
     )
+    duration = models.CharField(
+        max_length=MAX_LENGHT,
+        verbose_name='Продолжительность курса'
+    )
+    experience = models.BooleanField(
+        default=False,
+        verbose_name='С опытом'
+    )
 
     class Meta:
         ordering = ('name',)

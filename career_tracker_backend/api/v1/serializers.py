@@ -5,16 +5,35 @@ from specialties.models import (
     Grade,
     GradeDirection,
     Direction,
-    Skill
+    Skill,
+    Sprint,
 )
 
 
 class GetCoursesSprecialization(serializers.ModelSerializer):
     """Сериализатор для получения всех курсов по специальности студента"""
 
+    progress = serializers.SerializerMethodField()
+
     class Meta:
         model = Course
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'progress', 'duration', 'experience')
+
+    def get_progress(self, obj):
+        """Вычисление % прогресса по курсу у студента"""
+        request = self.context.get('request')
+        print(obj)
+        sprints_course = Sprint.objects.filter(
+            course=obj
+        ).count()
+        print('sprints=', sprints_course)
+        sprints_student = Sprint.objects.filter(
+            course=obj,
+            students_sprint__student=request.user
+        ).count()
+        print(sprints_student)
+
+        return int(sprints_student / sprints_course * 100)
 
 
 class GradeDirectionSerializator(serializers.ModelSerializer):

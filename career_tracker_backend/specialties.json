@@ -1,0 +1,204 @@
+[
+{
+  "model": "specialties.specialization",
+  "pk": 1,
+  "fields": {
+    "name": "Специальность 1",
+    "image": ""
+  }
+},
+{
+  "model": "specialties.course",
+  "pk": 1,
+  "fields": {
+    "name": "Курс 1 для спец 1",
+    "description": "Описание",
+    "specialization": 1
+  }
+},
+{
+  "model": "specialties.course",
+  "pk": 2,
+  "fields": {
+    "name": "Курс 2 для спец 1",
+    "description": "Описание курса",
+    "specialization": 1
+  }
+},
+{
+  "model": "specialties.grade",
+  "pk": 1,
+  "fields": {
+    "name": "грейд 1 специальности 1"
+  }
+},
+{
+  "model": "specialties.grade",
+  "pk": 2,
+  "fields": {
+    "name": "грейд 2 специальности 1"
+  }
+},
+{
+  "model": "specialties.grade",
+  "pk": 3,
+  "fields": {
+    "name": "грейд 3 специальности 1"
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 1,
+  "fields": {
+    "specialization": 1,
+    "grade": 1,
+    "direction": 1,
+    "description": "Описание",
+    "skills": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 2,
+  "fields": {
+    "specialization": 1,
+    "grade": 1,
+    "direction": 2,
+    "description": "опим",
+    "skills": [
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 3,
+  "fields": {
+    "specialization": 1,
+    "grade": 2,
+    "direction": 3,
+    "description": "Описание 13",
+    "skills": [
+      6
+    ]
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 1,
+  "fields": {
+    "name": "Навык 1",
+    "description": "Описание"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 2,
+  "fields": {
+    "name": "навык 2",
+    "description": "22"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 3,
+  "fields": {
+    "name": "навык 3",
+    "description": "3"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 4,
+  "fields": {
+    "name": "навык 4",
+    "description": "4"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 5,
+  "fields": {
+    "name": "навык 5",
+    "description": "5"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 6,
+  "fields": {
+    "name": "Навык 6",
+    "description": "Описание 6"
+  }
+},
+{
+  "model": "specialties.direction",
+  "pk": 1,
+  "fields": {
+    "name": "Направление 1 Специальности 1",
+    "color": "#6F78FF"
+  }
+},
+{
+  "model": "specialties.direction",
+  "pk": 2,
+  "fields": {
+    "name": "направление 2",
+    "color": "#FFFFFF"
+  }
+},
+{
+  "model": "specialties.direction",
+  "pk": 3,
+  "fields": {
+    "name": "НАправление 3",
+    "color": "#FFFFFF"
+  }
+},
+{
+  "model": "specialties.direction",
+  "pk": 4,
+  "fields": {
+    "name": "Направление 4",
+    "color": "#FFFFFF"
+  }
+},
+{
+  "model": "specialties.sprint",
+  "pk": 1,
+  "fields": {
+    "name": "Спринт 1",
+    "course": 1,
+    "skills": [
+      1
+    ]
+  }
+},
+{
+  "model": "specialties.sprint",
+  "pk": 2,
+  "fields": {
+    "name": "спринт 2",
+    "course": 1,
+    "skills": [
+      2
+    ]
+  }
+},
+{
+  "model": "specialties.sprint",
+  "pk": 3,
+  "fields": {
+    "name": "Спринт 3",
+    "course": 1,
+    "skills": [
+      3
+    ]
+  }
+}
+]
