@@ -5,9 +5,14 @@ from drf_yasg.utils import swagger_auto_schema
 
 
 from specialties.models import Specialization, Grade, Direction, Skill, Course
-from api.v1.serializers import (SkillsSerializer, StatisticSerializer,
-                                StatisticDirectionsSerializer, GetCoursesSprecialization,
-                                GetGradeDirectionDescriptionSerializator, GetDirectionSerializer)
+from api.v1.serializers import (
+    SkillsSerializer,
+    StatisticSerializer,
+    StatisticDirectionsSerializer,
+    GetCoursesSpecialization,
+    GetGradeDirectionDescriptionSerializator,
+    GetDirectionSerializer
+)
 
 
 class StatisticsView(APIView):
@@ -65,7 +70,7 @@ class UnexploredSkillsView(generics.ListAPIView):
 class GetPlanStudent(generics.ListAPIView):
     '''Обработка запроса на получение курсов по специальности студента'''
 
-    serializer_class = GetCoursesSprecialization
+    serializer_class = GetCoursesSpecialization
 
     def get_queryset(self):
         return Course.objects.filter(

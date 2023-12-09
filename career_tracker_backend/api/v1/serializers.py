@@ -85,7 +85,7 @@ class StatisticDirectionsSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'color')
 
 
-class GetCoursesSprecialization(serializers.ModelSerializer):
+class GetCoursesSpecialization(serializers.ModelSerializer):
     """Сериализатор для получения всех курсов по специальности студента"""
 
     progress = serializers.SerializerMethodField()
@@ -97,17 +97,13 @@ class GetCoursesSprecialization(serializers.ModelSerializer):
     def get_progress(self, obj):
         """Вычисление % прогресса по курсу у студента"""
         request = self.context.get('request')
-        print(obj)
         sprints_course = Sprint.objects.filter(
             course=obj
         ).count()
-        print('sprints=', sprints_course)
         sprints_student = Sprint.objects.filter(
             course=obj,
             students_sprint__student=request.user
         ).count()
-        print(sprints_student)
-
         return int(sprints_student / sprints_course * 100)
 
 
@@ -157,10 +153,10 @@ class GetDirectionSerializer(serializers.ModelSerializer):
         """Вычисление % знаний студента в рамках конкретного направления"""
         request = self.context.get('request')
         direction_skills_count = Skill.objects.filter(
-            grades_digrections__direction=obj
+            grades_directions__direction=obj
         ).count()
         student__dir_skills_count = Skill.objects.filter(
-            grades_digrections__direction=obj,
+            grades_directions__direction=obj,
             sprint_skills__students_sprint__student=request.user
         ).count()
         return int(student__dir_skills_count / direction_skills_count * 100)
