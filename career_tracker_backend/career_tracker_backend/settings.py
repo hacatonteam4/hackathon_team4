@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
     'colorfield',
@@ -130,3 +131,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+
+# DEFAULT_GENERATOR_CLASS = 'drf_yasg.generators.OpenAPISchemaGenerator'

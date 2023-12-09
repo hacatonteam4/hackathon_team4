@@ -1,10 +1,8 @@
 from rest_framework import serializers
 from drf_base64.fields import Base64ImageField
 
-from specialties.models import (Direction, Specialization,
-                                Grade, GradeDirection, Skill)
-from students.models import (SkillStudent, StudentCourse,
-                             Student, StudentSpecialization)
+from specialties.models import Direction, Grade, GradeDirection, Skill
+from students.models import Student, StudentSpecialization
 
 
 class GradeSerializer(serializers.ModelSerializer):
