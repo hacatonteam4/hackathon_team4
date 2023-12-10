@@ -5,7 +5,13 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from prof_tests.models import Test
-from specialties.models import Course, Sprint, Skill, Specialization, Grade
+from specialties.models import (
+    Course,
+    Sprint,
+    Skill,
+    Specialization,
+    Grade
+)
 
 
 PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]

@@ -1,3 +1,4 @@
+# flake8: noqa
 import os
 
 from pathlib import Path
@@ -31,6 +32,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'colorfield',
     'djangoviz',
+    'corsheaders',
 
     'prof_tests.apps.ProfTestsConfig',
     'students.apps.StudentsConfig',
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,5 +137,8 @@ REST_FRAMEWORK = {
     ]
 }
 
-
 # DEFAULT_GENERATOR_CLASS = 'drf_yasg.generators.OpenAPISchemaGenerator'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
