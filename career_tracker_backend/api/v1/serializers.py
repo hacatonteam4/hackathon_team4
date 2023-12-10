@@ -104,6 +104,8 @@ class GetCoursesSpecialization(serializers.ModelSerializer):
             course=obj,
             students_sprint__student=request.user
         ).count()
+        if sprints_course == 0: # Для тестов, чтобы не добавлять спринты ко всем курсам
+            return 0
         return int(sprints_student / sprints_course * 100)
 
 
