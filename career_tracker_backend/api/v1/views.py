@@ -1,8 +1,7 @@
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from drf_yasg.utils import swagger_auto_schema
-
+from drf_spectacular.utils import extend_schema
 
 from specialties.models import Specialization, Grade, Direction, Skill, Course
 from api.v1.serializers import (
@@ -18,7 +17,14 @@ from api.v1.serializers import (
 class StatisticsView(APIView):
     'Обработка запроса на получение специальности и прогресса по грейду'
 
-    @swagger_auto_schema(responses={status.HTTP_200_OK: StatisticSerializer, })
+    @extend_schema(
+        responses={status.HTTP_200_OK: StatisticSerializer},
+        summary='''
+        Отображение специальности, ее изображения и
+        процента прохождения грейда
+        ''',
+        tags=['Статистика студента']
+    )
     def get(self, request):
         return Response(
             StatisticSerializer(
@@ -27,6 +33,13 @@ class StatisticsView(APIView):
         )
 
 
+@extend_schema(
+    summary='''
+        Отображение направлений специальности,
+        прогресса по ним и цвета
+        ''',
+    tags=['Статистика студента']
+)
 class DirectionsInStatisticsView(generics.ListAPIView):
     '''Обработка запроса на получение направлений в статистике'''
 
@@ -42,6 +55,12 @@ class DirectionsInStatisticsView(generics.ListAPIView):
         )
 
 
+@extend_schema(
+    summary='''
+        Отображение изученных навыков
+        ''',
+    tags=['Карта навыков']
+)
 class CompleteSkillsView(generics.ListAPIView):
     '''Отображение изученных навыков'''
 
@@ -58,6 +77,12 @@ class CompleteSkillsView(generics.ListAPIView):
         return skills
 
 
+@extend_schema(
+    summary='''
+        Отображение навыков для изучения
+        ''',
+    tags=['Карта навыков']
+)
 class UnexploredSkillsView(generics.ListAPIView):
     '''Отображение неизученных навыков'''
 
@@ -73,6 +98,12 @@ class UnexploredSkillsView(generics.ListAPIView):
         return skills
 
 
+@extend_schema(
+    summary='''
+        Отображение всех курсов по специальности студента
+        ''',
+    tags=['План роста']
+)
 class GetPlanStudent(generics.ListAPIView):
     '''Обработка запроса на получение курсов по специальности студента'''
 
@@ -84,6 +115,12 @@ class GetPlanStudent(generics.ListAPIView):
         )
 
 
+@extend_schema(
+    summary='''
+        Отображение процентов изучения направлений на диаграмме
+        ''',
+    tags=['План роста']
+)
 class DirectionView(generics.ListAPIView):
     '''Обработка запроса на получение направлений специализации студента'''
 
@@ -98,52 +135,17 @@ class DirectionView(generics.ListAPIView):
         ).distinct()
 
 
+@extend_schema(
+    summary='''
+        Направления с описанием каждой группы направлений для грейда
+        ''',
+    tags=['Статистика студента']
+)
 class GradeDirectionDescription(generics.ListAPIView):
-    """
+    '''
     Обработка запроса на получение описания группы навыков,
     связанных с пересечением грейда и направления.
-    Возвращает:
-        JsonResponse: JSON-ответ, содержащий описания групп навыков.
-
-    Пример использования:
-        GET /api/v1/description_direction/
-
-    Ответ:
-        {
-            "data": [
-                {
-                    "id": 1,
-                    "name": "grade 1",
-                    "direction": [
-                        {
-                            "id": 1,
-                            "name": "Direction 1",
-                            "color": "#6F78FF",
-                            "description": "Description"
-                        },
-                        {
-                            "id": 2,
-                            "name": "Direction 2",
-                            "color": "#FFFFFF",
-                            "description": "Description 2"
-                        }
-                    ]
-                },
-                {
-                    "id": 2,
-                    "name": "grade 2",
-                    "direction": [
-                        {
-                            "id": 1,
-                            "name": "Direction 1",
-                            "color": "#6F78FF",
-                            "description": "Description"
-                        }
-                    ]
-                }
-            ]
-        }
-    """
+    '''
 
     serializer_class = GetGradeDirectionDescriptionSerializator
 
