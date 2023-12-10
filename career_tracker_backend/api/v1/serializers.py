@@ -14,7 +14,7 @@ from students.models import Student, StudentSpecialization
 
 
 class GradeSerializer(serializers.ModelSerializer):
-    '''Отображение грейда и его процента в статистике'''
+    '''Получение грейда и его процента в статистике'''
 
     percent_grade = serializers.SerializerMethodField()
 
@@ -34,12 +34,20 @@ class GradeSerializer(serializers.ModelSerializer):
         return int(student_skills / grade_skills * 100)
 
 
-class DirectionSkillSerializator(serializers.ModelSerializer):
-    """Сериализатор для направлений в рамках конкретного навыка"""
+class GradeDirectionSerializator(serializers.ModelSerializer):
+    """Сериализатор для направлений навыков в рамках конкретного грейда"""
 
     id = serializers.IntegerField(source='direction.id')
     name = serializers.ReadOnlyField(source='direction.name')
     color = serializers.ReadOnlyField(source='direction.color')
+
+    class Meta:
+        model = GradeDirection
+        fields = ('id', 'name', 'color', 'description')
+
+
+class DirectionSkillSerializator(GradeDirectionSerializator):
+    """Сериализатор для направлений в рамках конкретного навыка"""
 
     class Meta:
         model = GradeDirection
@@ -48,6 +56,7 @@ class DirectionSkillSerializator(serializers.ModelSerializer):
 
 class SpecializationSerializer(serializers.ModelSerializer):
     '''Отображение специальности в статистике'''
+
     name = serializers.CharField(source='specialization.name')
     current_grade = GradeSerializer()
     image = Base64ImageField(source='specialization.image')
@@ -58,6 +67,8 @@ class SpecializationSerializer(serializers.ModelSerializer):
 
 
 class StatisticSerializer(serializers.ModelSerializer):
+    '''Отображение статистики по специальности и грейду'''
+
     specializations = SpecializationSerializer(
         many=True, source='students_specialization'
     )
@@ -68,6 +79,8 @@ class StatisticSerializer(serializers.ModelSerializer):
 
 
 class SkillsSerializer(serializers.ModelSerializer):
+    '''Получение навыков в карте навыков'''
+
     direction = DirectionSkillSerializator(
         many=True,
         source='grades_directions'
@@ -75,14 +88,7 @@ class SkillsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Skill
-        fields = ('id', 'name', 'direction')
-
-
-class StatisticDirectionsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Direction
-        fields = ('id', 'name', 'color')
+        fields = ('id', 'name', 'description', 'direction')
 
 
 class GetCoursesSpecialization(serializers.ModelSerializer):
@@ -104,21 +110,9 @@ class GetCoursesSpecialization(serializers.ModelSerializer):
             course=obj,
             students_sprint__student=request.user
         ).count()
-        if sprints_course == 0: # Для тестов, чтобы не добавлять спринты ко всем курсам
+        if sprints_course == 0:  # Для тестов, чтобы не добавлять спринты ко всем курсам
             return 0
         return int(sprints_student / sprints_course * 100)
-
-
-class GradeDirectionSerializator(serializers.ModelSerializer):
-    """Сериализатор для направлений навыков в рамках конкретного грейда"""
-
-    id = serializers.IntegerField(source='direction.id')
-    name = serializers.ReadOnlyField(source='direction.name')
-    color = serializers.ReadOnlyField(source='direction.color')
-
-    class Meta:
-        model = GradeDirection
-        fields = ('id', 'name', 'color', 'description')
 
 
 class GetGradeDirectionDescriptionSerializator(serializers.ModelSerializer):
@@ -162,3 +156,11 @@ class GetDirectionSerializer(serializers.ModelSerializer):
             sprint_skills__students_sprint__student=request.user
         ).count()
         return int(student__dir_skills_count / direction_skills_count * 100)
+
+
+class StatisticDirectionsSerializer(GetDirectionSerializer):
+    ''' Получение направлений с процентами прогресса и цветом в статистике'''
+
+    class Meta:
+        model = Direction
+        fields = ('id', 'name', 'color', 'percent_direction')
