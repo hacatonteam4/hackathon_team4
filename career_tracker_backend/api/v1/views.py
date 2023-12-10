@@ -16,6 +16,7 @@ from api.v1.serializers import (
 
 
 class StatisticsView(APIView):
+    'Обработка запроса на получение специальности и прогресса по грейду'
 
     @swagger_auto_schema(responses={status.HTTP_200_OK: StatisticSerializer, })
     def get(self, request):
@@ -27,6 +28,7 @@ class StatisticsView(APIView):
 
 
 class DirectionsInStatisticsView(generics.ListAPIView):
+    '''Обработка запроса на получение направлений в статистике'''
 
     serializer_class = StatisticDirectionsSerializer
 
@@ -41,6 +43,8 @@ class DirectionsInStatisticsView(generics.ListAPIView):
 
 
 class CompleteSkillsView(generics.ListAPIView):
+    '''Отображение изученных навыков'''
+
     serializer_class = SkillsSerializer
 
     def get_queryset(self):
@@ -55,6 +59,8 @@ class CompleteSkillsView(generics.ListAPIView):
 
 
 class UnexploredSkillsView(generics.ListAPIView):
+    '''Отображение неизученных навыков'''
+
     serializer_class = SkillsSerializer
 
     def get_queryset(self):
