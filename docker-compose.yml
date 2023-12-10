@@ -1,0 +1,38 @@
+version: '3.9'
+
+volumes:
+  pg_data:
+  static:
+  media:
+  frontend_build:
+
+  services:
+
+    db:
+      image: postgres:15
+      container_name: db
+      env_file: .env
+      volumes:
+        - pg:/var/lib/postgresql/data
+      ports:
+        - "{DB_PORT}:{DB_PORT}"
+      command: -p ${DB_PORT}
+
+    backend:
+      image: airsofter/career_tracker_backend
+      env_file: .env
+      restart: always
+      ports:
+        - ${BACKEND_PORT}:${BACKEND_PORT}
+      volumes:
+        - static:backend/backend_static/
+        - media:backend/backend_media/
+      depends_on:
+        - db
+
+    frontend:
+      image: grimlerih/practicum
+      volumes:
+        - frontend_build:/app/result_build/build
+      depends_on:
+        - backend

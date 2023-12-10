@@ -1,8 +1,10 @@
-version: "3.9"
+version: '3.9'
 
 volumes:
   pg:
-
+  static:
+  media:
+  # frontend_build:
 
 services:
 
@@ -13,5 +15,30 @@ services:
     volumes:
       - pg:/var/lib/postgresql/data
     ports:
-      - "{DB_PORT}:{DB_PORT}"
-    command: -p ${DB_PORT}
+      - "${DB_PORT}:${DB_PORT}"
+
+  backend:
+    build: ./career_tracker_backend/ 
+    env_file: .env
+    restart: always
+    # ports:
+    #   - ${BACKEND_PORT}:${BACKEND_PORT}
+    volumes:
+      - static:/backend_static
+    #   - media:/backend_media
+    depends_on:
+      - db
+
+  frontend:
+    image: grimlerih/practicum
+    volumes:
+      - static:/frontend_static
+    depends_on:
+      - backend
+
+  nginx:
+    build: ./nginx/
+    volumes:
+      - static:/staticfiles/
+    ports:
+      - 8000:80 
