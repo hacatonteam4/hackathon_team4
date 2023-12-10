@@ -89,7 +89,7 @@ class DirectionView(generics.ListAPIView):
         )
         return Direction.objects.filter(
             grades_direction__specialization__in=specialization_student
-        )
+        ).distinct()
 
 
 class GradeDirectionDescription(generics.ListAPIView):

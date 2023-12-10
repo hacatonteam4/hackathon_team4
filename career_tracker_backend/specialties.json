@@ -11,7 +11,7 @@
   "model": "specialties.specialization",
   "pk": 2,
   "fields": {
-    "name": "Специальность 2",
+    "name": "РЎРїРµС†РёР°Р»СЊРЅРѕСЃС‚СЊ 2",
     "image": ""
   }
 },
@@ -19,7 +19,7 @@
   "model": "specialties.specialization",
   "pk": 3,
   "fields": {
-    "name": "Специальность 3",
+    "name": "РЎРїРµС†РёР°Р»СЊРЅРѕСЃС‚СЊ 3",
     "image": ""
   }
 },
@@ -28,7 +28,7 @@
   "pk": 1,
   "fields": {
     "name": "Product Management (Junior)",
-    "description": "Описание курса Product Management (Junior)",
+    "description": "РћРїРёСЃР°РЅРёРµ РєСѓСЂСЃР° Product Management (Junior)",
     "specialization": 1,
     "duration": "9",
     "experience": false
@@ -39,7 +39,7 @@
   "pk": 2,
   "fields": {
     "name": "Product Management (Middle)",
-    "description": "Описание курса Product Management (Middle)",
+    "description": "РћРїРёСЃР°РЅРёРµ РєСѓСЂСЃР° Product Management (Middle)",
     "specialization": 1,
     "duration": "11",
     "experience": true
@@ -50,7 +50,7 @@
   "pk": 3,
   "fields": {
     "name": "Product Management (Senior)",
-    "description": "Описание курса Product Management (Senior)",
+    "description": "РћРїРёСЃР°РЅРёРµ РєСѓСЂСЃР° Product Management (Senior)",
     "specialization": 1,
     "duration": "9",
     "experience": true
@@ -81,21 +81,21 @@
   "model": "specialties.grade",
   "pk": 4,
   "fields": {
-    "name": "Грейд 1 Специальности 2"
+    "name": "Р“СЂРµР№Рґ 1 РЎРїРµС†РёР°Р»СЊРЅРѕСЃС‚Рё 2"
   }
 },
 {
   "model": "specialties.grade",
   "pk": 5,
   "fields": {
-    "name": "Грейд 2 Специальности 2"
+    "name": "Р“СЂРµР№Рґ 2 РЎРїРµС†РёР°Р»СЊРЅРѕСЃС‚Рё 2"
   }
 },
 {
   "model": "specialties.grade",
   "pk": 6,
   "fields": {
-    "name": "Грейд 3 Специальности 2"
+    "name": "Р“СЂРµР№Рґ 3 РЎРїРµС†РёР°Р»СЊРЅРѕСЃС‚Рё 2"
   }
 },
 {
@@ -105,7 +105,7 @@
     "specialization": 1,
     "grade": 1,
     "direction": 1,
-    "description": "Описание группы навыков junior/discovery&researches",
+    "description": "РћРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅР°РІС‹РєРѕРІ junior/discovery&researches",
     "skills": [
       2,
       1
@@ -119,7 +119,7 @@
     "specialization": 1,
     "grade": 1,
     "direction": 2,
-    "description": "Описание группы навыков junior/value&solution design",
+    "description": "РћРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅР°РІС‹РєРѕРІ junior/value&solution design",
     "skills": [
       4,
       3
@@ -133,7 +133,7 @@
     "specialization": 1,
     "grade": 1,
     "direction": 3,
-    "description": "Описание группы навыков junior/development&delivery",
+    "description": "РћРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅР°РІС‹РєРѕРІ junior/development&delivery",
     "skills": [
       5
     ]
@@ -146,7 +146,7 @@
     "specialization": 1,
     "grade": 1,
     "direction": 4,
-    "description": "Описание группы навыков junior/growth&experiments",
+    "description": "РћРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅР°РІС‹РєРѕРІ junior/growth&experiments",
     "skills": [
       7,
       6
@@ -160,7 +160,7 @@
     "specialization": 1,
     "grade": 1,
     "direction": 5,
-    "description": "Описание группы навыков junior/product marketing",
+    "description": "РћРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅР°РІС‹РєРѕРІ junior/product marketing",
     "skills": [
       8,
       9
@@ -174,7 +174,7 @@
     "specialization": 1,
     "grade": 1,
     "direction": 6,
-    "description": "Описание группы навыков junior/sales&economics",
+    "description": "РћРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅР°РІС‹РєРѕРІ junior/sales&economics",
     "skills": [
       10,
       11
@@ -188,7 +188,7 @@
     "specialization": 1,
     "grade": 2,
     "direction": 1,
-    "description": "Описание группы навыков middle/discovery&researches",
+    "description": "РћРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅР°РІС‹РєРѕРІ middle/discovery&researches",
     "skills": [
       12
     ]
@@ -201,7 +201,7 @@
     "specialization": 1,
     "grade": 2,
     "direction": 2,
-    "description": "Описание группы навыков middle/value&solution design",
+    "description": "РћРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅР°РІС‹РєРѕРІ middle/value&solution design",
     "skills": [
       13
     ]
@@ -214,7 +214,7 @@
     "specialization": 1,
     "grade": 3,
     "direction": 1,
-    "description": "Описание группы навыков senior/discovery&researches",
+    "description": "РћРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅР°РІС‹РєРѕРІ senior/discovery&researches",
     "skills": [
       14
     ]
@@ -224,112 +224,112 @@
   "model": "specialties.skill",
   "pk": 1,
   "fields": {
-    "name": "Проведение интервью",
-    "description": "Почему для клиента важно именно это, а не что-то другое"
+    "name": "РџСЂРѕРІРµРґРµРЅРёРµ РёРЅС‚РµСЂРІСЊСЋ",
+    "description": "РџРѕС‡РµРјСѓ РґР»СЏ РєР»РёРµРЅС‚Р° РІР°Р¶РЅРѕ РёРјРµРЅРЅРѕ СЌС‚Рѕ, Р° РЅРµ С‡С‚Рѕ-С‚Рѕ РґСЂСѓРіРѕРµ"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 2,
   "fields": {
-    "name": "Мониторинг показателей продукта",
-    "description": "Что сейчас происходит в продукте?"
+    "name": "РњРѕРЅРёС‚РѕСЂРёРЅРі РїРѕРєР°Р·Р°С‚РµР»РµР№ РїСЂРѕРґСѓРєС‚Р°",
+    "description": "Р§С‚Рѕ СЃРµР№С‡Р°СЃ РїСЂРѕРёСЃС…РѕРґРёС‚ РІ РїСЂРѕРґСѓРєС‚Рµ?"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 3,
   "fields": {
-    "name": "Выявление потребностей",
-    "description": "Какие цели/проблемы есть в компании"
+    "name": "Р’С‹СЏРІР»РµРЅРёРµ РїРѕС‚СЂРµР±РЅРѕСЃС‚РµР№",
+    "description": "РљР°РєРёРµ С†РµР»Рё/РїСЂРѕР±Р»РµРјС‹ РµСЃС‚СЊ РІ РєРѕРјРїР°РЅРёРё"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 4,
   "fields": {
-    "name": "Анализ альтернативных решений",
-    "description": "В чем заключается ключевая ценность сторонних продуктов?"
+    "name": "РђРЅР°Р»РёР· Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹С… СЂРµС€РµРЅРёР№",
+    "description": "Р’ С‡РµРј Р·Р°РєР»СЋС‡Р°РµС‚СЃСЏ РєР»СЋС‡РµРІР°СЏ С†РµРЅРЅРѕСЃС‚СЊ СЃС‚РѕСЂРѕРЅРЅРёС… РїСЂРѕРґСѓРєС‚РѕРІ?"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 5,
   "fields": {
-    "name": "Приемка результатов внедренных изменений в продукте",
-    "description": "Насколько то, что получилось в итоге, соответствует требованиям"
+    "name": "РџСЂРёРµРјРєР° СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РІРЅРµРґСЂРµРЅРЅС‹С… РёР·РјРµРЅРµРЅРёР№ РІ РїСЂРѕРґСѓРєС‚Рµ",
+    "description": "РќР°СЃРєРѕР»СЊРєРѕ С‚Рѕ, С‡С‚Рѕ РїРѕР»СѓС‡РёР»РѕСЃСЊ РІ РёС‚РѕРіРµ, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ С‚СЂРµР±РѕРІР°РЅРёСЏРј"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 6,
   "fields": {
-    "name": "генерация и управление идеями",
-    "description": "Как получить новую качественную идею ценности продукта"
+    "name": "РіРµРЅРµСЂР°С†РёСЏ Рё СѓРїСЂР°РІР»РµРЅРёРµ РёРґРµСЏРјРё",
+    "description": "РљР°Рє РїРѕР»СѓС‡РёС‚СЊ РЅРѕРІСѓСЋ РєР°С‡РµСЃС‚РІРµРЅРЅСѓСЋ РёРґРµСЋ С†РµРЅРЅРѕСЃС‚Рё РїСЂРѕРґСѓРєС‚Р°"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 7,
   "fields": {
-    "name": "Формулирование гипотез",
-    "description": "Как упаковать идею в гипотезу, чтобы она имела смысл"
+    "name": "Р¤РѕСЂРјСѓР»РёСЂРѕРІР°РЅРёРµ РіРёРїРѕС‚РµР·",
+    "description": "РљР°Рє СѓРїР°РєРѕРІР°С‚СЊ РёРґРµСЋ РІ РіРёРїРѕС‚РµР·Сѓ, С‡С‚РѕР±С‹ РѕРЅР° РёРјРµР»Р° СЃРјС‹СЃР»"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 8,
   "fields": {
-    "name": "Мониторинг СМИ и лидеров мнений",
-    "description": "Что сейчас произошло на рынке и может повлиять на планы по продукту"
+    "name": "РњРѕРЅРёС‚РѕСЂРёРЅРі РЎРњР Рё Р»РёРґРµСЂРѕРІ РјРЅРµРЅРёР№",
+    "description": "Р§С‚Рѕ СЃРµР№С‡Р°СЃ РїСЂРѕРёР·РѕС€Р»Рѕ РЅР° СЂС‹РЅРєРµ Рё РјРѕР¶РµС‚ РїРѕРІР»РёСЏС‚СЊ РЅР° РїР»Р°РЅС‹ РїРѕ РїСЂРѕРґСѓРєС‚Сѓ"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 9,
   "fields": {
-    "name": "Мониторинг отраслевых событий",
-    "description": "Какие мероприятия важны для продвижения или улучшения продукта"
+    "name": "РњРѕРЅРёС‚РѕСЂРёРЅРі РѕС‚СЂР°СЃР»РµРІС‹С… СЃРѕР±С‹С‚РёР№",
+    "description": "РљР°РєРёРµ РјРµСЂРѕРїСЂРёСЏС‚РёСЏ РІР°Р¶РЅС‹ РґР»СЏ РїСЂРѕРґРІРёР¶РµРЅРёСЏ РёР»Рё СѓР»СѓС‡С€РµРЅРёСЏ РїСЂРѕРґСѓРєС‚Р°"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 10,
   "fields": {
-    "name": "Presale продукта",
-    "description": "Каким образом продемонстрировать продукт, чтобы увеличить вероятность сделки"
+    "name": "Presale РїСЂРѕРґСѓРєС‚Р°",
+    "description": "РљР°РєРёРј РѕР±СЂР°Р·РѕРј РїСЂРѕРґРµРјРѕРЅСЃС‚СЂРёСЂРѕРІР°С‚СЊ РїСЂРѕРґСѓРєС‚, С‡С‚РѕР±С‹ СѓРІРµР»РёС‡РёС‚СЊ РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ СЃРґРµР»РєРё"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 11,
   "fields": {
-    "name": "Подготовка скрипта продаж и обработка возражений",
-    "description": "Какие аргументы и контраргументы мы используем для удачной продажи"
+    "name": "РџРѕРґРіРѕС‚РѕРІРєР° СЃРєСЂРёРїС‚Р° РїСЂРѕРґР°Р¶ Рё РѕР±СЂР°Р±РѕС‚РєР° РІРѕР·СЂР°Р¶РµРЅРёР№",
+    "description": "РљР°РєРёРµ Р°СЂРіСѓРјРµРЅС‚С‹ Рё РєРѕРЅС‚СЂР°СЂРіСѓРјРµРЅС‚С‹ РјС‹ РёСЃРїРѕР»СЊР·СѓРµРј РґР»СЏ СѓРґР°С‡РЅРѕР№ РїСЂРѕРґР°Р¶Рё"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 12,
   "fields": {
-    "name": "Формирование контекста потребителя",
-    "description": "Что из себя представляет клиент"
+    "name": "Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РєРѕРЅС‚РµРєСЃС‚Р° РїРѕС‚СЂРµР±РёС‚РµР»СЏ",
+    "description": "Р§С‚Рѕ РёР· СЃРµР±СЏ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ РєР»РёРµРЅС‚"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 13,
   "fields": {
-    "name": "Формирование интерфейса",
-    "description": "Как строится взаимодействие пользователя с продуктом"
+    "name": "Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РёРЅС‚РµСЂС„РµР№СЃР°",
+    "description": "РљР°Рє СЃС‚СЂРѕРёС‚СЃСЏ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ РїСЂРѕРґСѓРєС‚РѕРј"
   }
 },
 {
   "model": "specialties.skill",
   "pk": 14,
   "fields": {
-    "name": "Определение целей исследования",
-    "description": "Какие исследования нужны, чтобы достичь целей компании"
+    "name": "РћРїСЂРµРґРµР»РµРЅРёРµ С†РµР»РµР№ РёСЃСЃР»РµРґРѕРІР°РЅРёСЏ",
+    "description": "РљР°РєРёРµ РёСЃСЃР»РµРґРѕРІР°РЅРёСЏ РЅСѓР¶РЅС‹, С‡С‚РѕР±С‹ РґРѕСЃС‚РёС‡СЊ С†РµР»РµР№ РєРѕРјРїР°РЅРёРё"
   }
 },
 {
@@ -384,7 +384,7 @@
   "model": "specialties.sprint",
   "pk": 1,
   "fields": {
-    "name": "Спринт 1",
+    "name": "РЎРїСЂРёРЅС‚ 1",
     "course": 1,
     "skills": [
       10
@@ -395,7 +395,7 @@
   "model": "specialties.sprint",
   "pk": 2,
   "fields": {
-    "name": "спринт 2",
+    "name": "СЃРїСЂРёРЅС‚ 2",
     "course": 1,
     "skills": [
       4
@@ -406,7 +406,7 @@
   "model": "specialties.sprint",
   "pk": 3,
   "fields": {
-    "name": "спринт 3",
+    "name": "СЃРїСЂРёРЅС‚ 3",
     "course": 1,
     "skills": [
       3
@@ -417,7 +417,7 @@
   "model": "specialties.sprint",
   "pk": 4,
   "fields": {
-    "name": "спринт 4",
+    "name": "СЃРїСЂРёРЅС‚ 4",
     "course": 1,
     "skills": [
       8
@@ -428,7 +428,7 @@
   "model": "specialties.sprint",
   "pk": 5,
   "fields": {
-    "name": "спринт 5",
+    "name": "СЃРїСЂРёРЅС‚ 5",
     "course": 1,
     "skills": [
       9
@@ -439,7 +439,7 @@
   "model": "specialties.sprint",
   "pk": 6,
   "fields": {
-    "name": "спринт 6",
+    "name": "СЃРїСЂРёРЅС‚ 6",
     "course": 1,
     "skills": [
       2
@@ -450,7 +450,7 @@
   "model": "specialties.sprint",
   "pk": 7,
   "fields": {
-    "name": "спринт 7",
+    "name": "СЃРїСЂРёРЅС‚ 7",
     "course": 1,
     "skills": [
       11
@@ -461,7 +461,7 @@
   "model": "specialties.sprint",
   "pk": 8,
   "fields": {
-    "name": "спринт 8",
+    "name": "СЃРїСЂРёРЅС‚ 8",
     "course": 1,
     "skills": [
       5
@@ -472,7 +472,7 @@
   "model": "specialties.sprint",
   "pk": 9,
   "fields": {
-    "name": "спринт 9",
+    "name": "СЃРїСЂРёРЅС‚ 9",
     "course": 1,
     "skills": [
       1
@@ -483,7 +483,7 @@
   "model": "specialties.sprint",
   "pk": 10,
   "fields": {
-    "name": "спринт 10",
+    "name": "СЃРїСЂРёРЅС‚ 10",
     "course": 1,
     "skills": [
       7
@@ -494,7 +494,7 @@
   "model": "specialties.sprint",
   "pk": 11,
   "fields": {
-    "name": "спринт 11",
+    "name": "СЃРїСЂРёРЅС‚ 11",
     "course": 1,
     "skills": [
       6

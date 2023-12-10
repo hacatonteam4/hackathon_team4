@@ -16,7 +16,7 @@ DEBUG = os.getenv('DEBUG', 'true').lower() == 'true'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default='*').split(',')
 
-USE_SQLITE = os.getenv('USE_SQLITE', 'False').lower() == 'true'
+USE_SQLITE = os.getenv('USE_SQLITE', 'true').lower() == 'true'
 
 
 INSTALLED_APPS = [
