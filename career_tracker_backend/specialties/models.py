@@ -48,6 +48,7 @@ class Course(models.Model):
         default=False,
         verbose_name='С опытом'
     )
+    img = models.ImageField(upload_to='courses/', null=True, blank=True)
 
     class Meta:
         ordering = ('name',)

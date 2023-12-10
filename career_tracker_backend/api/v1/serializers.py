@@ -95,10 +95,11 @@ class GetCoursesSpecialization(serializers.ModelSerializer):
     """Сериализатор для получения всех курсов по специальности студента"""
 
     progress = serializers.SerializerMethodField()
+    img = Base64ImageField()
 
     class Meta:
         model = Course
-        fields = ('id', 'name', 'progress', 'duration', 'experience')
+        fields = ('id', 'name', 'progress', 'duration', 'experience', 'img')
 
     def get_progress(self, obj):
         """Вычисление % прогресса по курсу у студента"""
