@@ -1,14 +1,14 @@
 # MVP Career Tracker
 
-### Описание проекта
+## Описание проекта
 
 Сервис предназначен для создания индивидуального плана обучения пользователя на основе навыков, которые ему нужно развить и курсов Яндекс Практикума, которые обеспечат это развитие.
 
 
-### Локальный запуск приложения в Docker  
+## Локальный запуск приложения в Docker  
 
 Склонировать репозиторий на свой компьютер и перейти в корневую папку:
-```
+```python
 git clone git@github.com:hacatonteam4/hackathon_team4.git
 cd career_tracker_backend
 ```
@@ -30,9 +30,8 @@ USE_SQLITE=False
 
 Из корневой директории запустить сборку контейнеров с помощью
 docker-compose:
-```
+```python
 docker-compose up -d
-
 ```
 
 После этого будут созданы и запущены в фоновом режиме контейнеры
@@ -40,7 +39,7 @@ docker-compose up -d
 А также база данных наполнится тестовыми данными.
 
 Если что то пошло не так, необходимо сделать следующее:
-```
+```python
 cd career_tracker_backend
 dos2unix run.sh
 cd ..
@@ -74,3 +73,13 @@ docker-compose start
 
 Чтобы посмотреть спецификацию API в формате Redoc, нужно локально запустить
 проект и перейти на страницу http://localhost/api/swagger/ или http://localhost/api/redoc/
+
+
+## Технологии
+
+* Python 3.9
+* Django 3.2
+* Django REST framework 3.13
+* Nginx
+* Docker
+* Postgres
