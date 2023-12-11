@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'drf_yasg',
+    'drf_spectacular',
     'rest_framework',
     'rest_framework.authtoken',
     'colorfield',
@@ -134,10 +134,19 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
-# DEFAULT_GENERATOR_CLASS = 'drf_yasg.generators.OpenAPISchemaGenerator'
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Career tracker API",
+    "VERSION": "0.0.1",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_SETTINGS": {
+        "filter": True,
+    },
+    "COMPONENT_SPLIT_REQUEST": True
+}
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",

@@ -38,6 +38,16 @@ class StudentSpecialization(models.Model):
         related_name='students_specialization'
     )
 
+    class Meta:
+        ordering = ('student',)
+        verbose_name = 'Связь студента специальности и грейда'
+        verbose_name_plural = 'Связи студентов специальностей и грейдов'
+
+    def __str__(self):
+        return (f'Студент {self.student} получает изучает '
+                f'специальность {self.specialization} на грейде '
+                f'{self.current_grade}')
+
 
 class StudentTest(models.Model):
     '''Связь студентов с тестами'''
