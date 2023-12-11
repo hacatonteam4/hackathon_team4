@@ -1,0 +1,122 @@
+[
+{
+  "model": "students.studentspecialization",
+  "pk": 1,
+  "fields": {
+    "student": 2,
+    "specialization": 1,
+    "current_grade": 1
+  }
+},
+{
+  "model": "students.studentcourse",
+  "pk": 1,
+  "fields": {
+    "student": 2,
+    "course": 1,
+    "status_payment": false
+  }
+},
+{
+  "model": "students.skillstudent",
+  "pk": 1,
+  "fields": {
+    "student": 2,
+    "skill": 10,
+    "status": false
+  }
+},
+{
+  "model": "students.skillstudent",
+  "pk": 2,
+  "fields": {
+    "student": 2,
+    "skill": 4,
+    "status": false
+  }
+},
+{
+  "model": "students.skillstudent",
+  "pk": 3,
+  "fields": {
+    "student": 2,
+    "skill": 3,
+    "status": false
+  }
+},
+{
+  "model": "students.skillstudent",
+  "pk": 4,
+  "fields": {
+    "student": 2,
+    "skill": 8,
+    "status": false
+  }
+},
+{
+  "model": "students.skillstudent",
+  "pk": 5,
+  "fields": {
+    "student": 2,
+    "skill": 9,
+    "status": false
+  }
+},
+{
+  "model": "students.skillstudent",
+  "pk": 6,
+  "fields": {
+    "student": 2,
+    "skill": 2,
+    "status": false
+  }
+},
+{
+  "model": "students.sprintstudent",
+  "pk": 1,
+  "fields": {
+    "sprint": 1,
+    "student": 2
+  }
+},
+{
+  "model": "students.sprintstudent",
+  "pk": 2,
+  "fields": {
+    "sprint": 2,
+    "student": 2
+  }
+},
+{
+  "model": "students.sprintstudent",
+  "pk": 3,
+  "fields": {
+    "sprint": 3,
+    "student": 2
+  }
+},
+{
+  "model": "students.sprintstudent",
+  "pk": 4,
+  "fields": {
+    "sprint": 4,
+    "student": 2
+  }
+},
+{
+  "model": "students.sprintstudent",
+  "pk": 5,
+  "fields": {
+    "sprint": 5,
+    "student": 2
+  }
+},
+{
+  "model": "students.sprintstudent",
+  "pk": 6,
+  "fields": {
+    "sprint": 6,
+    "student": 2
+  }
+}
+]
