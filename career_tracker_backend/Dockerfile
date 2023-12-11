@@ -10,8 +10,6 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
-COPY run.sh .
-
 COPY media /media
 
 RUN chmod +x run.sh

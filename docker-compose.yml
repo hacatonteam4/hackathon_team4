@@ -14,7 +14,6 @@ services:
       - pg_data:/var/lib/postgresql/data
   
   backend:
-    # image: zalgan/career_tracker_backend
     build: career_tracker_backend/
     env_file: .env
     volumes:
@@ -30,7 +29,6 @@ services:
       - "5173:80"
 
   nginx:
-    # image: zalgan/career_tracker_nginx
     build: nginx/
     env_file: .env
     ports:
