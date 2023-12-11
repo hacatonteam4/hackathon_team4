@@ -3,6 +3,4 @@ venv
 db.sqlite3
 .env
 .vscode
-*.bak
-backend_static/
-backend_media/
+collected_static/
