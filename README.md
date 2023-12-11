@@ -69,7 +69,7 @@ docker-compose start
 ```
 
 
-### Спецификация API в формате Redoc:
+## Спецификация API в формате Redoc:
 
 Чтобы посмотреть спецификацию API в формате Redoc, нужно локально запустить
 проект и перейти на страницу http://localhost/api/swagger/ или http://localhost/api/redoc/
