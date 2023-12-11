@@ -14,13 +14,14 @@ services:
       - pg_data:/var/lib/postgresql/data
   
   backend:
-    image: zalgan/career_tracker_backend
+    # image: zalgan/career_tracker_backend
+    build: career_tracker_backend/
     env_file: .env
     volumes:
       - static:/backend_static
       - media:/app/media/
-    ports:
-      - "8000:8000"
+    # ports:
+    #   - "8000:8000"
     depends_on:
       - db
 
@@ -30,15 +31,16 @@ services:
     ports:
       - "5173:80"
 
-  # nginx:
-  #   image: zalgan/foodgram_nginx
-  #   env_file: .env
-  #   ports:
-  #     - "8000:80"
-  #   volumes:
-  #     - ./frontend/build:/usr/share/nginx/html/
-  #     - media:/media/
-  #     - static:/static
-  #   depends_on:
-  #     - backend
+  nginx:
+    # image: zalgan/career_tracker_nginx
+    build: nginx/
+    env_file: .env
+    ports:
+      - "8000:80"
+    volumes:
+      # - ./frontend/build:/usr/share/nginx/html/
+      - media:/media/
+      - static:/static
+    depends_on:
+      - backend
       
