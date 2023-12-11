@@ -83,3 +83,11 @@ docker-compose start
 * Nginx
 * Docker
 * Postgres
+
+### Примечание
+
+В данном репозитории представлен только backend проекта. Frontend загружается с Docker Hub
+
+### Авторы
+
+Денис Набатов, Артём Мариненко
