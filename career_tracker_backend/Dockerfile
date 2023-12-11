@@ -12,8 +12,8 @@ COPY . .
 
 COPY run.sh .
 
+COPY media /media
+
 RUN chmod +x run.sh
 
 ENTRYPOINT ["/app/run.sh"]
-
-# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "foodgram_backend.wsgi"]

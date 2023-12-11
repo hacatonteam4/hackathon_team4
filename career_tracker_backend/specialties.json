@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "name": "Product Management",
-    "image": ""
+    "image": "specialties/спец_продакт.jpg"
   }
 },
 {
@@ -27,33 +27,36 @@
   "model": "specialties.course",
   "pk": 1,
   "fields": {
-    "name": "Product Management (Junior)",
-    "description": "Описание курса Product Management (Junior)",
+    "name": "Продакт менеджер с нуля",
+    "description": "Описание курса Продакт менеджер с нуля",
     "specialization": 1,
     "duration": "9",
-    "experience": false
+    "experience": false,
+    "img": "courses/продакт_менеджер_с_нуля.png"
   }
 },
 {
   "model": "specialties.course",
   "pk": 2,
   "fields": {
-    "name": "Product Management (Middle)",
-    "description": "Описание курса Product Management (Middle)",
+    "name": "Основы продакт-менеджмента",
+    "description": "Описание курса Основы продакт-менеджмента",
     "specialization": 1,
-    "duration": "11",
-    "experience": true
+    "duration": "3",
+    "experience": true,
+    "img": "courses/основы_прод_мен.png"
   }
 },
 {
   "model": "specialties.course",
   "pk": 3,
   "fields": {
-    "name": "Product Management (Senior)",
-    "description": "Описание курса Product Management (Senior)",
+    "name": "Продакт менеджер",
+    "description": "Описание курса Продакт менеджер",
     "specialization": 1,
-    "duration": "9",
-    "experience": true
+    "duration": "4",
+    "experience": true,
+    "img": "courses/прод_мен.png"
   }
 },
 {
@@ -221,6 +224,123 @@
   }
 },
 {
+  "model": "specialties.gradedirection",
+  "pk": 10,
+  "fields": {
+    "specialization": 1,
+    "grade": 2,
+    "direction": 3,
+    "description": "Описание группы навыков middle/development&delivery",
+    "skills": [
+      15
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 11,
+  "fields": {
+    "specialization": 1,
+    "grade": 2,
+    "direction": 4,
+    "description": "Описание группы навыков middle/growth&experiments",
+    "skills": [
+      16
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 12,
+  "fields": {
+    "specialization": 1,
+    "grade": 2,
+    "direction": 5,
+    "description": "Описание группы навыков middle/product marketing",
+    "skills": [
+      17
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 13,
+  "fields": {
+    "specialization": 1,
+    "grade": 2,
+    "direction": 6,
+    "description": "Описание группы навыков middle/sales&economics",
+    "skills": [
+      18
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 14,
+  "fields": {
+    "specialization": 1,
+    "grade": 3,
+    "direction": 2,
+    "description": "Описание группы навыков senior/value&solution design",
+    "skills": [
+      19
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 15,
+  "fields": {
+    "specialization": 1,
+    "grade": 3,
+    "direction": 3,
+    "description": "Описание группы навыков senior/development&delivery",
+    "skills": [
+      20
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 16,
+  "fields": {
+    "specialization": 1,
+    "grade": 3,
+    "direction": 4,
+    "description": "Описание группы навыков senior/growth&experiments",
+    "skills": [
+      21
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 17,
+  "fields": {
+    "specialization": 1,
+    "grade": 3,
+    "direction": 5,
+    "description": "Описание группы навыков senior/product marketing",
+    "skills": [
+      22
+    ]
+  }
+},
+{
+  "model": "specialties.gradedirection",
+  "pk": 18,
+  "fields": {
+    "specialization": 1,
+    "grade": 3,
+    "direction": 6,
+    "description": "Описание группы навыков senior/sales&economics",
+    "skills": [
+      23
+    ]
+  }
+},
+{
   "model": "specialties.skill",
   "pk": 1,
   "fields": {
@@ -333,11 +453,83 @@
   }
 },
 {
+  "model": "specialties.skill",
+  "pk": 15,
+  "fields": {
+    "name": "Сопровождение интеграций",
+    "description": "Каким образом будет происходить интеграция продукта"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 16,
+  "fields": {
+    "name": "Приоритизация экспериментов",
+    "description": "Какую гипотезу стоит проверить в первую очередь"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 17,
+  "fields": {
+    "name": "Определение механик удержания потребителей",
+    "description": "Как мы будем удерживать потребителей для достижения их окупаемости"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 18,
+  "fields": {
+    "name": "Анализ объема рынка",
+    "description": "Какие ограничения роста продукта существуют, если ничего не менять"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 19,
+  "fields": {
+    "name": "Формирование дизайн-системы и метафор взаимодействия",
+    "description": "Из каких элементов строится интерфейс и взаимодействие пользователя с ним"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 20,
+  "fields": {
+    "name": "Оптимизация процессов поставки продукта на рынок",
+    "description": "Каким образом оптимизировать процесс разработки ценности"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 21,
+  "fields": {
+    "name": "Формирование стратегии развития продукта",
+    "description": "Какие решения нужно принять, чтобы реализовать видение продукта"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 22,
+  "fields": {
+    "name": "Формирование стратегии удержания клиентов",
+    "description": "Какие процессы и решения необходимо использовать, чтобы выполнить план по количеству активных клиентов"
+  }
+},
+{
+  "model": "specialties.skill",
+  "pk": 23,
+  "fields": {
+    "name": "формирование бизнес-модели и схемы монетизации",
+    "description": "Каким образом продукт монетизирует ценность для потребителя"
+  }
+},
+{
   "model": "specialties.direction",
   "pk": 1,
   "fields": {
     "name": "Discovery & Researches",
-    "color": "#FF4B1A"
+    "color": "#FF0000"
   }
 },
 {
@@ -345,7 +537,7 @@
   "pk": 2,
   "fields": {
     "name": "Value & Solution Design",
-    "color": "#78FF21"
+    "color": "#FFFD00"
   }
 },
 {
@@ -353,7 +545,7 @@
   "pk": 3,
   "fields": {
     "name": "Development & Delivery",
-    "color": "#FFFFFF"
+    "color": "#42FF00"
   }
 },
 {
@@ -361,7 +553,7 @@
   "pk": 4,
   "fields": {
     "name": "Growth & Experiments",
-    "color": "#3C48FF"
+    "color": "#0092FF"
   }
 },
 {
@@ -369,7 +561,7 @@
   "pk": 5,
   "fields": {
     "name": "Product Marketing",
-    "color": "#FFFFFF"
+    "color": "#F400FF"
   }
 },
 {
@@ -377,7 +569,7 @@
   "pk": 6,
   "fields": {
     "name": "Sales & Economics",
-    "color": "#FFFFFF"
+    "color": "#FF0000"
   }
 },
 {
